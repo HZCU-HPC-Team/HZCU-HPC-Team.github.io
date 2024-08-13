@@ -1,20 +1,20 @@
 ---
 # Display name
-title: Nelson Bighetti
+title: Muschel H
 
 # Full Name (for SEO)
-first_name: Nelson
-last_name: Bighetti
+first_name: Muschel
+last_name: H
 
 # Is this the primary user of the site?
 superuser: true
 
 # Role/position
-role: Professor of Artificial Intelligence
+role: Advisor for High-Performance Computing Team at Hangzhou City University
 
 # Organizations/Affiliations
 organizations:
-  - name: Stanford University
+  - name: Hangzhou City University
     url: ''
 
 # Short bio (displayed in user profile at end of posts)
