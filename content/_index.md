@@ -15,7 +15,7 @@ sections:
       text: |
         <br>
         
-        The Hangzhou City University High-Performance Computing (HPC) Team is a dynamic group of students dedicated to advancing computational science and engineering. The team specializes in focusing on optimizing algorithms, parallel computing, and performance analysis across a variety of platforms.
+        杭州城市大学高性能计算 （HPC） 团队是一个充满活力的学生团队，致力于解决高性能计算挑战.
   
   - block: collection
     content:
@@ -45,7 +45,7 @@ sections:
       columns: '1'
       background:
         image: 
-          filename: coders.jpg
+          filename: back.jpg
           filters:
             brightness: 1
           parallax: false
