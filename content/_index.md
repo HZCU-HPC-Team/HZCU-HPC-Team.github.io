@@ -8,14 +8,14 @@ sections:
   - block: hero
     content:
       title: |
-        Wowchemy
-        Research Group
+        HZCU
+        High-Performance Computing Team
       image:
         filename: welcome.jpg
       text: |
         <br>
         
-        The **Wowchemy Research Group** has been a center of excellence for Artificial Intelligence research, teaching, and practice since its founding in 2016.
+        The Hangzhou City University High-Performance Computing (HPC) Team is a dynamic group of students dedicated to advancing computational science and engineering. The team specializes in focusing on optimizing algorithms, parallel computing, and performance analysis across a variety of platforms.
   
   - block: collection
     content:
