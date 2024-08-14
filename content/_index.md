@@ -1,6 +1,6 @@
 ---
 # Leave the homepage title empty to use the site title
-title:
+title: HZCU-HPCT
 date: 2022-10-24
 type: landing
 
@@ -8,14 +8,13 @@ sections:
   - block: hero
     content:
       title: |
-        HZCU
-        High-Performance Computing Team
+        HZCU HPC Team
       image:
         filename: welcome.jpg
       text: |
         <br>
         
-        杭州城市大学高性能计算 （HPC） 团队是一个充满活力的学生团队，致力于解决高性能计算挑战.
+        浙大城市学院高性能计算(HPC)团队是一个充满活力的学生团队，我们致力于高性能计算领域。
   
   - block: collection
     content:
@@ -52,18 +51,19 @@ sections:
       columns: '1'
     id: accomplishments
 
-  - block: collection
-    content:
-      title: Latest Preprints
-      text: ""
-      count: 5
-      filters:
-        folders:
-          - publication
-        publication_type: 'article'
-    design:
-      view: citation
-      columns: '1'
+# ERROR：Bao Zhuhan: 当前Publication页面无实际超链接，该部分停用
+  # - block: collection
+  #   content:
+  #     title: Latest Preprints
+  #     text: ""
+  #     count: 5
+  #     filters:
+  #       folders:
+  #         - publication
+  #       publication_type: 'article'
+  #   design:
+  #     view: citation
+  #     columns: '1'
 
   - block: markdown
     content:
