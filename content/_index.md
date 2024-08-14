@@ -36,36 +36,27 @@ sections:
       view: card
       columns: '1'
   
-  # - block: markdown
-  #   content:
-  #     title:
-  #     subtitle: ''
-  #     text:
-  #   design:
-  #     columns: '1'
-  #     background:
-  #       # Removed the image to not display coder.jpg
-  #       # image: 
-  #       #   filename: coder.jpg
-  #       #   filters:
-  #       #     brightness: 1
-  #       #   parallax: false
-  #       #   position: center
-  #       #   size: cover
-  #       #   text_color_light: true
-  #     spacing:
-  #       padding: ['20px', '0', '20px', '0']
-  #     css_class: fullscreen
-
   - block: collection
     content:
       title: Accomplishments 
       text: ""
-      count: 5
+      count: 3
       filters:
         folders:
           - accomplishments
         publication_type: 'article'
+      items:
+        - title: "IPCC Excellence Award"
+          description: "ACM China - International Parallel Computing Challenge Excellence Award"
+          date: "Aug. 2022"
+
+        - title: "CPC Excellence Award"
+          description: "ACM China - International Parallel Computing Challenge Excellence Award"
+          date: "Aug. 2023"
+
+        - title: "ASC2024 Second Prize"
+          description: "ASC24 Student Supercomputer Challenge Preliminary Second Prize"
+          date: "Feb. 2024"
     design:
       view: citation
       columns: '1'
