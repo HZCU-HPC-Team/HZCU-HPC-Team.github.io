@@ -3,7 +3,7 @@
 # Hugo Documentation: https://gohugo.io/getting-started/configuration/#all-configuration-settings
 # This file is formatted using YAML syntax - learn more at https://learnxinyminutes.com/docs/yaml/
 
-title: HZCU High-Performance Computing Team # Website name
+title: HZCU HPC Team # Website name
 baseURL: 'https://hzcu-hpc-team.github.io/' # Website URL
 
 ############################
@@ -11,7 +11,7 @@ baseURL: 'https://hzcu-hpc-team.github.io/' # Website URL
 ############################
 
 defaultContentLanguage: en
-hasCJKLanguage: false
+hasCJKLanguage: true
 defaultContentLanguageInSubdir: false
 removePathAccents: true
 
