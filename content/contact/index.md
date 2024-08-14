@@ -9,24 +9,8 @@ sections:
     content:
       title: Contact
       text: |-
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer tempus augue non tempor egestas. Proin nisl nunc, dignissim in accumsan dapibus, auctor ullamcorper neque. Quisque at elit felis. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Aenean eget elementum odio. Cras interdum eget risus sit amet aliquet. In volutpat, nisl ut fringilla dignissim, arcu nisl suscipit ante, at accumsan sapien nisl eu eros.
-      email: test@example.org
-      phone: 888 888 88 88
-      address:
-        street: 450 Serra Mall
-        city: Stanford
-        region: CA
-        postcode: '94305'
-        country: United States
-        country_code: US
-      coordinates:
-        latitude: '37.4275'
-        longitude: '-122.1697'
-      directions: Enter Building 1 and take the stairs to Office 200 on Floor 2
-      office_hours:
-        - 'Monday 10:00 to 13:00'
-        - 'Wednesday 09:00 to 10:00'
-      appointment_url: 'https://calendly.com'
+        我们是一支精心选拔，由对高性能计算充满热情的学生组成的团队。我们聚集了具有不同技术背景和兴趣的成员，他们在算法优化、程序设计、系统架构等高性能计算的关键领域中不断探索和学习。我们致力于解决复杂的科学计算问题，推动计算科学的前沿。我们通过参与各种竞赛和研究项目，不断提升团队的技术水平和创新能力。我们的目标是培养具备高性能计算技能的专业人才，为未来的科技发展贡献力量。
+      email: hur@hzcu.edu.cn
       #contact_links:
       #  - icon: comments
       #    icon_pack: fas
@@ -54,15 +38,15 @@ sections:
       text:
     design:
       columns: '1'
-      background:
-        image: 
-          filename: contact.jpg
-          filters:
-            brightness: 1
-          parallax: false
-          position: center
-          size: cover
-          text_color_light: true
+      # background:
+        # image: 
+        #   filename: contact.jpg
+        #   filters:
+        #     brightness: 1
+        #   parallax: false
+        #   position: center
+        #   size: cover
+        #   text_color_light: true
       spacing:
         padding: ['20px', '0', '20px', '0']
       css_class: fullscreen
