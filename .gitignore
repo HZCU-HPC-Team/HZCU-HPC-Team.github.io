@@ -6,5 +6,8 @@
 public/
 assets/jsconfig.json
 
-#Bao Zhuhan
+# Bao Zhuhan
 .history
+
+# local deplyment
+/_vendor

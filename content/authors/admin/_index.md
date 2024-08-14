@@ -1,34 +1,37 @@
 ---
 # Display name
-title: Muschel H
+title: Rui Hu
 
 # Full Name (for SEO)
-first_name: Muschel
-last_name: H
+first_name: Rui
+last_name: Hu
 
 # Is this the primary user of the site?
 superuser: true
 
 # Role/position
-role: Advisor for High-Performance Computing Team at Hangzhou City University
-
+role: Mentor for HPCT
 # Organizations/Affiliations
 organizations:
   - name: Hangzhou City University
     url: 'https://www.hzcu.edu.cn/'
 
-# Short bio (displayed in user profile at end of posts)
-bio: My research interests include distributed robotics, mobile computing and programmable matter.
+# # Short bio (displayed in user profile at end of posts)
+# bio: My research interests include distributed robotics, mobile computing and programmable matter.
 
-interests:
-  - High-Performance Computing
+# interests:
+#   - High-Performance Computing
 
 education:
   courses:
-    - course: Bachelor of Engineering
+
+    - course: Exchange Program
+      institution: Zhejiang University
+      year: 2023
+
+    - course: Bachelor of Comuputer Science
       institution: Hangzhou City University
       year: 2024
-
 
 # Social/Academic Networking
 # For available icons, see: https://docs.hugoblox.com/getting-started/page-builder/#icons
@@ -46,7 +49,7 @@ social:
   #   link: https://scholar.google.co.uk/citations?user=sIwtMXoAAAAJ
   - icon: github
     icon_pack: fab
-    link: https://github.com/gcushen
+    link: https://matchalatter.github.io/
 # Link to a PDF of your resume/CV from the About widget.
 # To enable, copy your resume/CV to `static/files/cv.pdf` and uncomment the lines below.
 # - icon: cv
@@ -64,7 +67,7 @@ highlight_name: false
 user_groups:
   - Researchers
 ---
-
+<!-- 
 Nelson Bighetti is a professor of artificial intelligence at the Stanford AI Lab. His research interests include distributed robotics, mobile computing and programmable matter. He leads the Robotic Neurobiology group, which develops self-reconfiguring robots, systems of self-organizing robots, and mobile sensor networks.
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed neque elit, tristique placerat feugiat ac, facilisis vitae arcu. Proin eget egestas augue. Praesent ut sem nec arcu pellentesque aliquet. Duis dapibus diam vel metus tempus vulputate.
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed neque elit, tristique placerat feugiat ac, facilisis vitae arcu. Proin eget egestas augue. Praesent ut sem nec arcu pellentesque aliquet. Duis dapibus diam vel metus tempus vulputate. -->

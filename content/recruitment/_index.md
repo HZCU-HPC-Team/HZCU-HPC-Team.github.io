@@ -1,5 +1,5 @@
 ---
-title: Latest News
+title: Recruitment
 
 # Listing view
 view: compact

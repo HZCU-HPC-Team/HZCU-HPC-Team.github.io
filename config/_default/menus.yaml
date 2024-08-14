@@ -4,18 +4,18 @@
 #   The weight parameter defines the order that the links will appear in.
 
 main:
-  - name: Home
-    url: Home
-    weight: 20
-  - name: News
-    url: post
+  # - name: Home
+  #   url: Home
+  #   weight: 20
+  - name: Recruitment
+    url: recruitment
     weight: 30
   - name: Accomplish­ments
     url: "#accomplishments"
     weight: 40
-  - name: People
+  - name: Member
     url: people
     weight: 45
-  - name: Contact
-    url: contact
-    weight: 50
+  # - name: Contact
+  #   url: contact
+  #   weight: 50
