@@ -6,13 +6,13 @@
 main:
   - name: Home
     url: Home
-    weight: 50
+    weight: 20
   - name: News
     url: post
-    weight: 20
+    weight: 30
   - name: Accomplish­ments
     url: accomplish­ments
     weight: 40
   - name: Contact
     url: contact
-    weight: 60
+    weight: 50

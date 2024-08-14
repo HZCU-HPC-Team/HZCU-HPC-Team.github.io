@@ -59,6 +59,19 @@ sections:
 
   - block: collection
     content:
+      title: Accomplishments 
+      text: ""
+      count: 5
+      filters:
+        folders:
+          - accomplishments
+        publication_type: 'article'
+    design:
+      view: citation
+      columns: '1'
+
+  - block: collection
+    content:
       title: Latest Preprints
       text: ""
       count: 5
