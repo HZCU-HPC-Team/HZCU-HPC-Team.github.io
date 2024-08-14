@@ -41,15 +41,12 @@ sections:
       title: Accomplishments
       text: |
         - **IPCC Excellence Award**  
-          *Description:* ACM China - International Parallel Computing Challenge Excellence Award  
           *Date:* Aug. 2022
 
         - **CPC Excellence Award**  
-          *Description:* ACM China - International Parallel Computing Challenge Excellence Award  
           *Date:* Aug. 2023
 
         - **ASC2024 Second Prize**  
-          *Description:* ASC24 Student Supercomputer Challenge Preliminary Second Prize  
           *Date:* Feb. 2024
     design:
       columns: '1'
