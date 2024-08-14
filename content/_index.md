@@ -36,29 +36,22 @@ sections:
       view: card
       columns: '1'
   
-  - block: collection
+  - block: markdown
     content:
-      title: Accomplishments 
-      text: ""
-      count: 3
-      filters:
-        folders:
-          - accomplishments
-        publication_type: 'article'
-      items:
-        - title: "IPCC Excellence Award"
-          description: "ACM China - International Parallel Computing Challenge Excellence Award"
-          date: "Aug. 2022"
+      title: Accomplishments
+      text: |
+        - **IPCC Excellence Award**  
+          *Description:* ACM China - International Parallel Computing Challenge Excellence Award  
+          *Date:* Aug. 2022
 
-        - title: "CPC Excellence Award"
-          description: "ACM China - International Parallel Computing Challenge Excellence Award"
-          date: "Aug. 2023"
+        - **CPC Excellence Award**  
+          *Description:* ACM China - International Parallel Computing Challenge Excellence Award  
+          *Date:* Aug. 2023
 
-        - title: "ASC2024 Second Prize"
-          description: "ASC24 Student Supercomputer Challenge Preliminary Second Prize"
-          date: "Feb. 2024"
+        - **ASC2024 Second Prize**  
+          *Description:* ASC24 Student Supercomputer Challenge Preliminary Second Prize  
+          *Date:* Feb. 2024
     design:
-      view: citation
       columns: '1'
 
   - block: collection
