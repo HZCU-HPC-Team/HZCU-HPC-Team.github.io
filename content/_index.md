@@ -36,20 +36,21 @@ sections:
       view: card
       columns: '1'
   
-  - block: markdown
-    content:
-      title: Accomplishments
-      text: |
-        - **IPCC Excellence Award**  
-          *Date:* Aug. 2022
+- block: markdown
+  content:
+    title: Accomplishments
+    text: |
+      - **IPCC Excellence Award**  
+        *Date:* Aug. 2022
 
-        - **CPC Excellence Award**  
-          *Date:* Aug. 2023
+      - **CPC Excellence Award**  
+        *Date:* Aug. 2023
 
-        - **ASC2024 Second Prize**  
-          *Date:* Feb. 2024
-    design:
-      columns: '1'
+      - **ASC2024 Second Prize**  
+        *Date:* Feb. 2024
+  design:
+    columns: '1'
+  id: accomplishments
 
   - block: collection
     content:

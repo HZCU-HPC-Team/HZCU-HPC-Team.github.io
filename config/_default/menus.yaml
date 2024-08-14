@@ -11,8 +11,11 @@ main:
     url: post
     weight: 30
   - name: Accomplish­ments
-    url: accomplish­ments
+    url: "#accomplishments"
     weight: 40
+  - name: People
+    url: people
+    weight: 45
   - name: Contact
     url: contact
     weight: 50
