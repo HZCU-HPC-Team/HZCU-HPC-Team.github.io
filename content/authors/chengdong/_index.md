@@ -1,36 +1,36 @@
 ---
 # Display name
-title: chengdong S 沈铖栋
+title: "chengdong S 沈铖栋"
 
 # Full name (for SEO)
-first_name: chengdong
-last_name: S
+first_name: "chengdong"
+last_name: "S"
 
 # Username (this should match the folder name)
 authors:
-  - 沈铖栋
+  - "沈铖栋"
 
 # Is this the primary user of the site?
 superuser: false
 
 # Role/position
-role: Team member of High-Performance Computing Team at Hangzhou City University
+role: "Team member of High-Performance Computing Team at Hangzhou City University"
 
 # Organizations/Affiliations
 organizations:
-  - name: Hangzhou City University
+  - name: "Hangzhou City University"
     url: 'https://www.hzcu.edu.cn/'
 
 # Short bio (displayed in user profile at end of posts)
-bio: 踏实点
+bio: "踏实点"
 
 interests:
-  - Black Myth Wukong
+  - "Black Myth Wukong"
 
 education:
   courses:
-    - course: Undergraduate in Computer Science
-      institution: Hangzhou City University
+    - course: "Undergraduate in Computer Science"
+      institution: "Hangzhou City University"
       year: 2024
 
 # Social/Academic Networking
@@ -50,8 +50,6 @@ email: '2193389150@qq.com'
 # Organizational groups that you belong to (for People widget)
 #   Set this to `[]` or comment out if you are not using People widget.
 user_groups:
-  - Researchers
-  - Visitors
-难搞啊
+  - "Researchers"
+  - "Visitors"
 ---
-
