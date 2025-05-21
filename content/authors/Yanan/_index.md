@@ -1,6 +1,6 @@
 ---
 # Display name
-title: Yanan Sheng
+title: Yanan Sheng 盛亚楠
 
 # Full Name (for SEO)
 first_name: Yanan
