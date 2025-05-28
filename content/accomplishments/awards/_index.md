@@ -21,3 +21,13 @@ banner:
 - title: "ASC2024 Second Prize"
   description: "ASC24 Student Supercomputer Challenge Preliminary Second Prize"
   date: "Feb. 2024"
+
+
+- title: "ASC2024 Second Prize (Team 1)"
+  description: "ASC24 Student Supercomputer Challenge Preliminary Second Prize"
+  date: "Feb. 2025"
+
+
+- title: "ASC2024 Second Prize (Team 2)"
+  description: "ASC24 Student Supercomputer Challenge Preliminary Second Prize"
+  date: "Feb. 2025"
