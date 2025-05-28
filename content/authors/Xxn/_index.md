@@ -1,35 +1,37 @@
 ---
 # Display name
-title: Eason W 王绅懿
+title: Xunuo Xie 谢许诺
 
 # Full name (for SEO)
-first_name: Eason
-last_name: W
+first_name: Xunuo
+last_name: Xie
 
 # Username (this should match the folder name)
 authors:
-  - 王绅懿
+  - 谢许诺
 
 # Is this the primary user of the site?
 superuser: false
 
 # Role/position
-role: Team Leader of High-Performance Computing Team at Hangzhou City University
+role: Team member of HPCT
 
 # Organizations/Affiliations
 organizations:
   - name: Hangzhou City University
-    url: ''
+    url: 'https://www.hzcu.edu.cn/'
 
 # Short bio (displayed in user profile at end of posts)
 bio: My research interests include distributed robotics, mobile computing and programmable matter.
 
 interests:
-  - Black Myth Wukong
+  - Overwatch
+  - VALORANT
+  - badminton
 
 education:
   courses:
-    - course: Undergraduate in Computer Science
+    - course: Undergraduate software engineering
       institution: Hangzhou City University
       year: 2024
 
@@ -45,7 +47,7 @@ education:
 #   link: files/cv.pdf
 
 # Enter email to display Gravatar (if Gravatar enabled in Config)
-email: 'eason241008@163.com'
+email: '1795527942@qq.com'
 
 # Organizational groups that you belong to (for People widget)
 #   Set this to `[]` or comment out if you are not using People widget.
@@ -54,4 +56,4 @@ user_groups:
   - Visitors
 ---
 
-绷不住了孩子们
+
