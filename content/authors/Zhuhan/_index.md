@@ -75,13 +75,15 @@ user_groups:
 
 [![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&weight=500&size=30&pause=1000&color=FFFFFF&width=435&lines=%F0%9F%91%8B+Hi%2C+I'm+Zhuhan+Bao)](https://git.io/typing-svg)
 
-![C](https://img.shields.io/badge/C-00599C?style=flat&logo=c)
-![Python](https://img.shields.io/badge/Python-3776AB?style=flat&logo=python)
-![Java](https://img.shields.io/badge/Java-007396?style=flat&logo=java)
-![Linux](https://img.shields.io/badge/Linux-FCC624?style=flat&logo=linux)
-![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=flat&logo=html5)
-![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=flat&logo=css3)
-![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat&logo=javascript)
+<div style="display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-bottom: 10px;">
+  <img src="https://img.shields.io/badge/C-00599C?style=flat&logo=c" alt="C"/>
+  <img src="https://img.shields.io/badge/Python-3776AB?style=flat&logo=python" alt="Python"/>
+  <img src="https://img.shields.io/badge/Java-007396?style=flat&logo=java" alt="Java"/>
+  <img src="https://img.shields.io/badge/Linux-FCC624?style=flat&logo=linux" alt="Linux"/>
+  <img src="https://img.shields.io/badge/HTML5-E34F26?style=flat&logo=html5" alt="HTML5"/>
+  <img src="https://img.shields.io/badge/CSS3-1572B6?style=flat&logo=css3" alt="CSS3"/>
+  <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat&logo=javascript" alt="JavaScript"/>
+</div>
 
 ---
 🎓 Sophomore student majoring in Software Engineering at [Hangzhou City University (HZCU)](http://www.hzcu.edu.cn/)
