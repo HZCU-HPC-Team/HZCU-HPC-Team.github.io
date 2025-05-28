@@ -73,7 +73,7 @@ user_groups:
 </table>
 
 
-[![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&weight=500&size=30&pause=1000&color=FFFFFF&width=435&lines=%F0%9F%91%8B+Hi%2C+I'm+Zhuhan+Bao)](https://git.io/typing-svg)
+[![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&weight=500&size=30&pause=1000&color=000000&repeat=false&width=435&lines=%F0%9F%91%8B+Hi%2C+I'm+Zhuhan+Bao)](https://git.io/typing-svg)
 
 <div style="display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-bottom: 10px;">
   <img src="https://img.shields.io/badge/C-00599C?style=flat&logo=c" alt="C"/>
