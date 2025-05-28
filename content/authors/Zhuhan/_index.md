@@ -1,17 +1,17 @@
 ---
 # Display name
-title: Zhuhan B 鲍竹涵
+title: Zhuhan Bao 鲍竹涵
 
 # Full name (for SEO)
 first_name: Zhuhan
-last_name: B
+last_name: Bao
 
 # Username (this should match the folder name)
 authors:
   - 鲍竹涵
 
 # Is this the primary user of the site?
-superuser: false
+superuser: true
 
 # Role/position
 role: Team member of High-Performance Computing Team at Hangzhou City University
@@ -22,10 +22,10 @@ organizations:
     url: 'https://www.hzcu.edu.cn/'
 
 # Short bio (displayed in user profile at end of posts)
-bio: 暴力出奇迹，打表上省一
+bio: Attention is all you need.
 
 interests:
-  - Black Myth Wukong
+  - 🏸 Badminton
 
 education:
   courses:
@@ -38,9 +38,9 @@ education:
 #   For an email link, use "fas" icon pack, "envelope" icon, and a link in the
 #   form "mailto:your-email@example.com" or "#contact" for contact widget.
 social:
-  # - icon: envelope
-  #   icon_pack: fas
-  #   link: 'mailto:test@example.org'
+  - icon: envelope
+    icon_pack: fas
+    link: 'mailto:hengyuhan3762@gmail.com'
   # - icon: twitter
   #   icon_pack: fab
   #   link: https://twitter.com/GeorgeCushen
@@ -49,17 +49,47 @@ social:
   #   link: https://scholar.google.co.uk/citations?user=sIwtMXoAAAAJ
   - icon: github
     icon_pack: fab
-    link: https://github.com/BaoZhuhan
+    link: https://BaoZhuhan.github.io/p/cv/
 
 # Enter email to display Gravatar (if Gravatar enabled in Config)
-email: 'baozhoverseas@163.com'
+email: 'hengyuhan3762@gmail.com'
 
 # Organizational groups that you belong to (for People widget)
 #   Set this to `[]` or comment out if you are not using People widget.
 
 user_groups:
   - Researchers
-  - Visitors
 ---
 
-绷不住了，牢大。
+<table>
+  <tr>
+    <td>
+      <img src="https://github-readme-stats.vercel.app/api?username=BaoZhuhan&show_icons=true&theme=radical" height="200"/>
+    </td>
+    <td>
+      <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=BaoZhuhan&layout=compact&theme=radical" height="200"/>
+    </td>
+  </tr>
+</table>
+
+
+[![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&weight=500&size=30&pause=1000&color=FFFFFF&width=435&lines=%F0%9F%91%8B+Hi%2C+I'm+Zhuhan+Bao)](https://git.io/typing-svg)
+
+![C](https://img.shields.io/badge/C-00599C?style=flat&logo=c)
+![Python](https://img.shields.io/badge/Python-3776AB?style=flat&logo=python)
+![Java](https://img.shields.io/badge/Java-007396?style=flat&logo=java)
+![Linux](https://img.shields.io/badge/Linux-FCC624?style=flat&logo=linux)
+![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=flat&logo=html5)
+![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=flat&logo=css3)
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat&logo=javascript)
+
+---
+🎓 Sophomore student majoring in Software Engineering at [Hangzhou City University (HZCU)](http://www.hzcu.edu.cn/)
+
+🚀 Member of the [HZCU High Performance Computing Team](http://hzcu-hpc-team.github.io/), participating in HPC competitions and training
+
+🧠 Active contributor in the AI Laboratory, engaging in research and projects
+
+💻 Proficient in C, Python, Java, and experienced with Linux
+
+📫 Contact me: hengyuhan3762@gmail.com ， [Personal Website](https://baozhuhan.github.io/p/cv/)

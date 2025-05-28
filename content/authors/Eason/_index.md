@@ -11,7 +11,7 @@ authors:
   - 王绅懿
 
 # Is this the primary user of the site?
-superuser: false
+superuser: true
 
 # Role/position
 role: Team Leader of High-Performance Computing Team at Hangzhou City University
