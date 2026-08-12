@@ -79,13 +79,43 @@
   }
 }
 
-@media (max-width: 47.99rem) {
+/* Homepage INTRODUCTION / JOIN US modules: card-level split layout —
+   metadata + title + Read sit top-left, the preview text fills the right
+   column. Scoped to the homepage collection blocks so section list pages
+   (compact/list views) keep the single-column entry. */
+#introduction .editorial-entry.text-only,
+#join-us .editorial-entry.text-only {
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.3fr);
+  grid-template-areas:
+    "meta summary"
+    "title summary"
+    "read attachments";
+
+  .editorial-entry__metadata { grid-area: meta; }
+  .editorial-entry__title { grid-area: title; }
+  .editorial-entry__summary { grid-area: summary; margin-top: 0; max-width: none; }
+  .editorial-entry__read { grid-area: read; }
+  .editorial-entry__attachments { grid-area: attachments; margin-top: 0; }
+}
+
+@media (max-width: 35.99rem) {
   .editorial-entry {
     grid-template-columns: 1fr;
 
     &.with-image .editorial-entry__media {
       grid-row: 1;
     }
+  }
+
+  #introduction .editorial-entry.text-only,
+  #join-us .editorial-entry.text-only {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "meta"
+      "title"
+      "summary"
+      "attachments"
+      "read";
   }
 }
 

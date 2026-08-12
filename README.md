@@ -2,7 +2,7 @@
 
 > 浙大城市学院高性能计算团队官方网站
 
-[https://hpc.hzcu.edu.cn/](https://hpc.hzcu.edu.cn/)
+[https://hzcu-hpc-team.github.io/](https://hzcu-hpc-team.github.io/)
 
 ## 关于我们
 
@@ -49,7 +49,7 @@ hugo --gc --minify -b "https://hpc.hzcu.edu.cn/"
 
 ## 项目结构
 
-```
+```txt
 content/           # 网站内容（Markdown + YAML 前置元数据）
   authors/         # 团队成员档案
   post/            # 新闻与公告

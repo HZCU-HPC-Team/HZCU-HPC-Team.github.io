@@ -221,3 +221,27 @@
     border-left: 1px solid var(--color-line);
   }
 }
+
+/* Dark state while a full-screen hero is in view (toggled by editorial.js). */
+.editorial-header.is-over-hero {
+  background: rgba(36, 36, 31, 0.65);
+  border-bottom-color: transparent;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.editorial-header.is-over-hero .editorial-brand,
+.editorial-header.is-over-hero .editorial-menu-link,
+.editorial-header.is-over-hero .editorial-menu-details summary,
+.editorial-header.is-over-hero .editorial-search {
+  color: var(--color-inverse-text);
+}
+
+.editorial-header.is-over-hero .editorial-menu-toggle {
+  color: var(--color-inverse-text);
+  border-color: rgba(242, 239, 231, 0.4);
+}
+
+.editorial-header.is-over-hero .editorial-menu.collapse.show {
+  background: var(--color-inverse);
+}

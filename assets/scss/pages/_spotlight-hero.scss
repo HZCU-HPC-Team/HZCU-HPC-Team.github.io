@@ -1,0 +1,226 @@
+/* Full-screen dark hero with a cursor-following spotlight reveal.
+   Layer order: base (z-10) < reveal (z-30) < heading/asides (z-50).
+   The reveal layer is invisible until spotlight.js applies a mask. */
+
+.home-section.wg-hero-spotlight {
+  padding-block: 0;
+}
+
+.home-section.wg-hero-spotlight > .container {
+  max-width: none;
+  padding-inline: 0;
+}
+
+.hero-spotlight {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
+  background: var(--color-inverse);
+}
+
+.hero-spotlight__base,
+.hero-spotlight__reveal {
+  position: absolute;
+  inset: 0;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.hero-spotlight__base {
+  z-index: 10;
+}
+
+.hero-spotlight__reveal {
+  z-index: 30;
+  opacity: 0;
+  transition: opacity 300ms var(--ease-out);
+}
+
+.hero-spotlight__reveal.is-visible {
+  opacity: 1;
+}
+
+.hero-spotlight__canvas {
+  position: absolute;
+  inset: 0;
+  display: none;
+  pointer-events: none;
+}
+
+.hero-spotlight__heading {
+  position: absolute;
+  top: calc(max(14%, 7rem));
+  right: 0;
+  left: 0;
+  z-index: 50;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-inline: 1.25rem;
+  text-align: center;
+  pointer-events: none;
+}
+
+.hero-spotlight__heading h1 {
+  margin: 0;
+}
+
+.hero-spotlight__line {
+  display: block;
+  color: #fff;
+  font-size: clamp(3rem, 10vw, 4.5rem);
+  font-weight: 400;
+  line-height: 0.95;
+  text-wrap: balance;
+}
+
+.hero-spotlight__line--accent {
+  font-family: "Playfair Display", var(--font-display);
+  font-style: italic;
+  letter-spacing: -0.05em;
+}
+
+.hero-spotlight__line:not(.hero-spotlight__line--accent) {
+  margin-top: -0.25rem;
+  letter-spacing: -0.08em;
+}
+
+.hero-spotlight__aside {
+  position: absolute;
+  z-index: 50;
+  max-width: 260px;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.875rem;
+  line-height: 1.625;
+}
+
+.hero-spotlight__aside p {
+  margin: 0;
+}
+
+.hero-spotlight__aside--left {
+  display: none;
+  bottom: 3.5rem;
+  left: 2.5rem;
+}
+
+.hero-spotlight__aside--right {
+  right: 1.25rem;
+  bottom: 2.5rem;
+  left: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-4);
+}
+
+.hero-spotlight__cta {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0.75rem 1.75rem;
+  border-radius: 999px;
+  color: var(--color-paper);
+  background: var(--color-clay);
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition:
+    background-color 180ms var(--ease-out),
+    transform 180ms var(--ease-out),
+    box-shadow 180ms var(--ease-out);
+}
+
+.hero-spotlight__cta:hover,
+.hero-spotlight__cta:focus-visible {
+  color: var(--color-paper);
+  background: var(--color-clay-dark);
+  transform: scale(1.03);
+}
+
+.hero-spotlight__cta:focus-visible {
+  outline-color: var(--color-paper);
+}
+
+/* Entrance animations (ported from the prompt; --ease-out matches its bezier). */
+
+@keyframes heroReveal {
+  0% { opacity: 0; transform: translateY(28px); filter: blur(12px); }
+  100% { opacity: 1; transform: translateY(0); filter: blur(0); }
+}
+
+@keyframes heroFadeUp {
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes heroZoom {
+  0% { transform: scale(1.12); }
+  100% { transform: scale(1); }
+}
+
+.hero-anim {
+  opacity: 0;
+  animation-fill-mode: forwards;
+  animation-timing-function: var(--ease-out);
+}
+
+.hero-reveal {
+  animation-name: heroReveal;
+  animation-duration: 1.1s;
+}
+
+.hero-fade {
+  animation-name: heroFadeUp;
+  animation-duration: 1s;
+}
+
+.hero-zoom {
+  animation: heroZoom 1.8s var(--ease-out) forwards;
+}
+
+@include reduce-motion {
+  .hero-anim,
+  .hero-zoom {
+    animation: none;
+    opacity: 1;
+  }
+
+  .hero-spotlight__reveal {
+    transition: none;
+  }
+}
+
+@media (min-width: 40rem) {
+  .hero-spotlight__line {
+    font-size: clamp(4.5rem, 12vw, 6rem);
+  }
+
+  .hero-spotlight__aside--left {
+    display: block;
+    left: 2.5rem;
+  }
+
+  .hero-spotlight__aside--right {
+    right: 2.5rem;
+    bottom: 6rem;
+    left: auto;
+  }
+}
+
+@media (min-width: 48rem) {
+  .hero-spotlight__line {
+    font-size: 6rem;
+  }
+
+  .hero-spotlight__aside--left {
+    left: 3.5rem;
+  }
+
+  .hero-spotlight__aside--right {
+    right: 3.5rem;
+  }
+}

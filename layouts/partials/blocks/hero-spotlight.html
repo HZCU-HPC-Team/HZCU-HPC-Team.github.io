@@ -1,0 +1,47 @@
+{{/* Spotlight reveal hero: full-screen dark hero with a cursor-following
+     radial mask that reveals a second image. Ported from the Lithos-style
+     React prompt into Hugo; styles in assets/scss/pages/_spotlight-hero.scss,
+     runtime in assets/js/spotlight.js. */}}
+{{ $block := .wcBlock }}
+{{ $title := $block.content.title | default site.Title }}
+{{ $headline := $block.content.headline | default "Beyond the clock" }}
+{{ $base_url := $block.content.image.base | default "" }}
+{{ $reveal_url := $block.content.image.reveal | default "" }}
+{{ $aside_left := $block.content.aside_left | default "" }}
+{{ $aside_right := $block.content.aside_right | default "" }}
+{{ $cta_text := $block.content.cta.text | default "Join Us" }}
+{{ $cta_url := $block.content.cta.url | default "/recruitment/join-us/" }}
+{{/* Optional local image overrides external URLs (used by the test suite and
+     keeps the self-hosted option). SVG/GIF are referenced verbatim. */}}
+{{ if $block.content.image.filename }}
+  {{ with resources.Get (path.Join "media" $block.content.image.filename) }}
+    {{ $base_url = .RelPermalink }}
+  {{ end }}
+{{ end }}
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,400;1,500;1,600&display=swap">
+
+<section class="hero-spotlight" aria-labelledby="hero-spotlight-title">
+  <div class="hero-spotlight__base hero-zoom" role="img" aria-label="{{ $title | plainify }}" {{ with $base_url }}style="background-image: url('{{ . }}')"{{ end }}></div>
+  <div class="hero-spotlight__reveal" data-spotlight-reveal {{ with $reveal_url }}style="background-image: url('{{ . }}')"{{ end }}></div>
+  <canvas class="hero-spotlight__canvas" data-spotlight-canvas aria-hidden="true"></canvas>
+
+  <div class="hero-spotlight__heading">
+    <h1 id="hero-spotlight-title">
+      <span class="hero-spotlight__line hero-spotlight__line--accent hero-anim hero-reveal" style="animation-delay: 0.25s">{{ $headline }}</span>
+      <span class="hero-spotlight__line hero-anim hero-reveal" style="animation-delay: 0.42s">{{ $title }}</span>
+    </h1>
+  </div>
+
+  {{ with $aside_left }}
+    <div class="hero-spotlight__aside hero-spotlight__aside--left hero-anim hero-fade" style="animation-delay: 0.7s">
+      <p>{{ . }}</p>
+    </div>
+  {{ end }}
+  <div class="hero-spotlight__aside hero-spotlight__aside--right hero-anim hero-fade" style="animation-delay: 0.85s">
+    {{ with $aside_right }}<p>{{ . }}</p>{{ end }}
+    <a class="hero-spotlight__cta" href="{{ $cta_url }}">{{ $cta_text }}</a>
+  </div>
+</section>

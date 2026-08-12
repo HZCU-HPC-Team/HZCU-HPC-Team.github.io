@@ -1,0 +1,53 @@
+{{- $block := .page -}}
+{{- $item := .item -}}
+{{- $index := .index -}}
+{{- $link := $item.RelPermalink -}}
+{{- $target := "" -}}
+{{- if $item.Params.external_link -}}
+  {{- $link = $item.Params.external_link -}}
+  {{- $target = `target="_blank" rel="noopener"` -}}
+{{- end -}}
+
+{{- $preview := "" -}}
+{{- with $item.Params.homepage_preview -}}
+  {{- $preview = $item.RenderString . -}}
+  {{- $preview = replaceRE `<h[1-3]([^>]*)>` `<h4$1>` $preview -}}
+  {{- $preview = replaceRE `</h[1-3]>` `</h4>` $preview -}}
+  {{- $preview = trim $preview " \t\r\n" -}}
+{{- end -}}
+{{- if not $preview -}}
+  {{- with $item.Params.summary -}}
+    {{- $summary := trim (htmlUnescape (plainify .)) " \t\r\n" -}}
+    {{- with $summary -}}
+      {{- $preview = printf "<p>%s</p>" (. | transform.HTMLEscape) -}}
+    {{- end -}}
+  {{- else with $item.Summary -}}
+    {{- $summary := trim (htmlUnescape (plainify .)) " \t\r\n" -}}
+    {{- with $summary -}}
+      {{- $preview = printf "<p>%s</p>" (. | transform.HTMLEscape) -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+
+{{- $classes := slice "homepage-preview" -}}
+{{- if eq $index 0 -}}
+  {{- $classes = $classes | append "homepage-preview--first" -}}
+{{- end -}}
+{{- if not $preview -}}
+  {{- $classes = $classes | append "homepage-preview--text-only" -}}
+{{- end -}}
+
+<article class="{{ delimit $classes " " }}" data-reveal>
+  <header class="homepage-preview__header">
+    {{- if eq $index 0 -}}
+      {{- with $block.content.eyebrow -}}
+        <h2 class="homepage-preview__eyebrow">{{ . | plainify }}</h2>
+      {{- end -}}
+    {{- end -}}
+    <h3 class="homepage-preview__title"><a href="{{ $link }}" {{ $target | safeHTMLAttr }}>{{ $item.Title }}</a></h3>
+    <a class="homepage-preview__read" href="{{ $link }}" {{ $target | safeHTMLAttr }}>阅读全文 →</a>
+  </header>
+  {{- with $preview }}
+    <div class="homepage-preview__content article-style">{{ . | safeHTML }}</div>
+  {{- end }}
+</article>

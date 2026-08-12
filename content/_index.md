@@ -5,19 +5,22 @@ date: 2022-10-24
 type: landing
 
 sections:
-  - block: hero
+  - block: hero-spotlight
     content:
-      title: |
-        HZCU HPC Team
+      headline: Beyond the clock
+      title: HZCU HPC Team
       image:
-        filename: banner.jpg
-      text: |
-        <br>
-        浙大城市学院高性能计算(HPC)团队是一个充满活力的学生团队，我们致力于高性能计算领域。
-  
+        base: 'https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260609_195923_b0ba8ace-1d1d-4f2c-9a28-1ab84b330680.png&w=1280&q=85'
+        reveal: 'https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260609_201152_bba90a12-bf12-459f-91f0-51f237dbaf3b.png&w=1280&q=85'
+      aside_left: 浙大城市学院高性能计算（HPC）团队隶属于学校超算中心，专注性能评估与优化，在 ASC、IPCC、CPC 等国际竞赛中屡获佳绩。
+      aside_right: 对高性能计算、并行计算与性能优化感兴趣？欢迎加入我们，一起探索计算科学的极限。
+      cta:
+        text: Join Us
+        url: /recruitment/join-us/
   - block: collection
     content:
-      title: INTRODUCTION
+      title:
+      eyebrow: INTRODUCTION
       subtitle:
       text:
       count: 5
@@ -31,13 +34,14 @@ sections:
       order: desc
       page_type: recruitment
     design:
-      view: card
+      view: homepage-preview
       columns: '1'
     id: introduction
 
   - block: collection
     content:
-      title: JOIN US
+      title:
+      eyebrow: JOIN US
       subtitle:
       text:
       count: 5
@@ -51,7 +55,7 @@ sections:
       order: desc
       page_type: recruitment
     design:
-      view: card
+      view: homepage-preview
       columns: '1'
     id: join-us
 
