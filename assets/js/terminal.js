@@ -59,3 +59,24 @@
 
   run();
 })();
+
+/* Scroll-down buttons: smooth-scroll on click. Each button carries a
+   data-scroll-factor (viewports to travel, default 1.2).
+   Independent of the typing animation above so they keep working for
+   prefers-reduced-motion users (falling back to an instant jump). */
+(() => {
+  const buttons = document.querySelectorAll("[data-scroll-down]");
+  if (!buttons.length) return;
+  const reducedMotion =
+    window.matchMedia &&
+    window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  buttons.forEach((button) => {
+    const factor = parseFloat(button.dataset.scrollFactor) || 1.2;
+    button.addEventListener("click", () => {
+      window.scrollBy({
+        top: window.innerHeight * factor,
+        behavior: reducedMotion ? "auto" : "smooth",
+      });
+    });
+  });
+})();

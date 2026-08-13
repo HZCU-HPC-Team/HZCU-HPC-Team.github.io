@@ -431,8 +431,8 @@ homepage_preview: "  "
             "超越时钟，探索计算的极限",
             "srun --nodes=1 --gpus=2",
             "[OK] 2× 4090 allocated",
-            "Join Us",
-            'href="/recruitment/join-us/"',
+            "data-scroll-down",
+            'aria-label="向下滚动"',
         ):
             with self.subTest(expected=expected):
                 self.assertIn(expected, self.homepage)

@@ -1,0 +1,8 @@
+{{/* Scroll-down button: filled shallow triangle that smooth-scrolls the page
+     (runtime in assets/js/terminal.js binds every [data-scroll-down]).
+     Shared by the terminal hero and the scroll-down shortcode.
+     Accepts a dict with optional `factor` (viewports to scroll, default 1.2). */}}
+{{ $factor := .factor | default 1.2 }}
+<button type="button" class="hero-terminal__scroll" data-scroll-down data-scroll-factor="{{ $factor }}" aria-label="向下滚动">
+  <svg width="48" height="48" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M0 5 Q6 8.5 12 12 Q18 8.5 24 5 Z"/></svg>
+</button>

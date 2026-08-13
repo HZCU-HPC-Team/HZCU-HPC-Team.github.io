@@ -1,0 +1,6 @@
+{{/* Renders the shared scroll-down button, centered, for use inside
+     markdown blocks on landing pages: {{< scroll-down 0.9 >}}
+     Optional first positional param: viewports to scroll (default 1.2). */}}
+<div class="hero-terminal__cta-row">
+  {{ partial "scroll-down-button.html" (dict "factor" (.Get 0)) }}
+</div>

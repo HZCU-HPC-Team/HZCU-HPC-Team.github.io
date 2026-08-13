@@ -13,8 +13,6 @@
 {{ $tagline := $block.content.tagline | default "超越时钟，探索计算的极限" }}
 {{ $aside_left := $block.content.aside_left | default "" }}
 {{ $aside_right := $block.content.aside_right | default "" }}
-{{ $cta_text := $block.content.cta.text | default "Join Us" }}
-{{ $cta_url := $block.content.cta.url | default "/recruitment/join-us/" }}
 {{ $ascii := readFile "ascii" }}
 {{ $asciiMobile := readFile "ascii-mobile" }}
 {{/* bash-style segmented prompt, shared by every command line */}}
@@ -30,7 +28,7 @@
     </div>
     <div class="hero-terminal__screen" data-terminal>
       <p class="hero-terminal__line" data-terminal-type>{{ $prompt | safeHTML }}&nbsp;<span class="hero-terminal__cmd">whoami</span></p>
-      <p class="hero-terminal__line hero-terminal__line--out" data-terminal-out>浙大城市学院 · 高性能计算团队</p>
+      <p class="hero-terminal__line hero-terminal__line--out" data-terminal-out>浙大城市学院 · 超算队</p>
       <p class="hero-terminal__line" data-terminal-type>{{ $prompt | safeHTML }}&nbsp;<span class="hero-terminal__cmd">srun --nodes=1 --gpus=2 ./asc-final.run</span></p>
       <p class="hero-terminal__line hero-terminal__line--ok" data-terminal-out>[OK] 2× 4090 allocated — job #2026 is running</p>
       <p class="hero-terminal__line" data-terminal-type>{{ $prompt | safeHTML }}&nbsp;<span class="hero-terminal__cmd">./welcome.sh</span></p>
@@ -59,6 +57,6 @@
   </div>
 
   <div class="hero-terminal__cta-row hero-anim hero-fade" style="animation-delay: 1s">
-    <a class="hero-terminal__cta" href="{{ $cta_url }}">{{ $cta_text }}</a>
+    {{ partial "scroll-down-button.html" (dict) }}
   </div>
 </section>

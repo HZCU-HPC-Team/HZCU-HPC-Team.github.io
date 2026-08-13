@@ -28,8 +28,8 @@ main:
     weight: 50
 
 
-  - name: 联系
-    url: contact
+  - name: 招新
+    url: /recruitment/join-us/
     weight: 60
     
 
