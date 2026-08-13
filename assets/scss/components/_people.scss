@@ -2,17 +2,19 @@
   width: calc(100% - (var(--page-gutter) * 2));
   max-width: var(--content-max);
   margin-inline: auto;
-  padding-block: clamp(4rem, 9vw, 8rem);
+  padding-block: clamp(2.5rem, 6vw, 5rem);
 }
 
 .editorial-people__intro {
   max-width: var(--reading-max);
-  margin-bottom: clamp(3rem, 7vw, 6rem);
+  margin-inline: auto;
+  margin-bottom: clamp(2rem, 4vw, 3.5rem);
+  text-align: center;
 }
 
 .editorial-people__intro h1 {
   margin: 0;
-  font-size: var(--heading-md);
+  font-size: clamp(1.75rem, calc(1.45rem + 1.2vw), 2.75rem);
   letter-spacing: -0.03em;
 }
 
@@ -24,21 +26,22 @@
 }
 
 .editorial-people__group + .editorial-people__group {
-  margin-top: clamp(3.5rem, 8vw, 7rem);
-  padding-top: clamp(2.5rem, 5vw, 4rem);
+  margin-top: clamp(2.5rem, 5vw, 4rem);
+  padding-top: clamp(1.75rem, 3.5vw, 2.5rem);
   border-top: 1px solid var(--color-line);
 }
 
 .editorial-people__group h2 {
-  margin: 0 0 var(--space-6);
+  margin: 0 0 var(--space-5);
   color: var(--color-clay-dark);
   font-size: var(--heading-sm);
+  text-align: center;
 }
 
 .editorial-people__grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: clamp(2rem, 4vw, 4rem) clamp(1.25rem, 2.5vw, 2.5rem);
+  gap: clamp(1.5rem, 3vw, 2.5rem) clamp(1rem, 2vw, 1.75rem);
 }
 
 .editorial-person {
@@ -48,23 +51,25 @@
 .editorial-person__portrait {
   display: block;
   width: 100%;
+  height: auto; /* 覆盖主题 .avatar 的固定 270px 高度，配合 aspect-ratio 保持正圆 */
   aspect-ratio: 1;
-  margin: 0;
+  margin: 0 auto;
   border: 1px solid var(--color-line);
-  border-radius: 0;
+  border-radius: 50%;
   box-shadow: none;
   object-fit: cover;
 }
 
 .editorial-person__details {
-  padding-top: var(--space-4);
+  padding-top: var(--space-3);
+  text-align: center;
 }
 
 .editorial-person h3 {
   margin: 0;
   color: var(--color-ink);
   font-family: var(--font-display);
-  font-size: clamp(1.3rem, calc(1.1rem + 0.55vw), 1.75rem);
+  font-size: clamp(1.15rem, calc(1rem + 0.45vw), 1.5rem);
   line-height: 1.15;
 }
 
@@ -96,6 +101,7 @@
 .editorial-person .network-icon {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: var(--space-2);
   margin: var(--space-3) 0 0;
   padding: 0;
@@ -129,7 +135,7 @@
 }
 
 #profile-page .avatar {
-  border-radius: 0;
+  border-radius: 50%;
   box-shadow: none;
 }
 
@@ -165,25 +171,25 @@
 
 @media (min-width: 64rem) {
   .editorial-people {
-    max-width: 80rem;
-    padding-block: 4rem 6rem;
+    max-width: 72rem;
+    padding-block: 3rem 4.5rem;
   }
 
   .editorial-people__intro {
-    margin-bottom: 3rem;
+    margin-bottom: 2.5rem;
   }
 
   .editorial-people__grid {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-columns: repeat(6, minmax(0, 1fr));
   }
 
   .editorial-people__group + .editorial-people__group {
-    margin-top: 4rem;
-    padding-top: 2.5rem;
+    margin-top: 3rem;
+    padding-top: 2rem;
   }
 
   .editorial-person h3 {
-    font-size: clamp(1.2rem, calc(1.05rem + 0.35vw), 1.5rem);
+    font-size: clamp(1.05rem, calc(0.95rem + 0.3vw), 1.3rem);
   }
 
   #profile-page .portrait-title h1 {

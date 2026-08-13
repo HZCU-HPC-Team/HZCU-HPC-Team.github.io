@@ -1,0 +1,62 @@
+{{/* Terminal hero: full-screen warm editorial section styled as a light
+     terminal window on the paper background. A typing animation "runs" a few
+     HPC-flavoured commands whose final output reveals the masthead, which
+     renders the ASCII art from ./ascii (decorative; the h1 is visually
+     hidden for screen readers).
+     Styles in assets/scss/pages/_terminal-hero.scss, runtime in
+     assets/js/terminal.js (registered via params.yaml plugins_js).
+     All content is visible by default; JS only hides lines after it confirms
+     it can animate, so no-JS and prefers-reduced-motion users see everything. */}}
+{{ $block := .wcBlock }}
+{{ $title := $block.content.title | default site.Title }}
+{{ $headline := $block.content.headline | default "Beyond the clock" }}
+{{ $tagline := $block.content.tagline | default "超越时钟，探索计算的极限" }}
+{{ $aside_left := $block.content.aside_left | default "" }}
+{{ $aside_right := $block.content.aside_right | default "" }}
+{{ $cta_text := $block.content.cta.text | default "Join Us" }}
+{{ $cta_url := $block.content.cta.url | default "/recruitment/join-us/" }}
+{{ $ascii := readFile "ascii" }}
+{{/* bash-style segmented prompt, shared by every command line */}}
+{{ $prompt := printf `<span class="hero-terminal__prompt"><span class="hero-terminal__prompt-user">hpc</span><span class="hero-terminal__prompt-sep">@</span><span class="hero-terminal__prompt-host">hzcu</span><span class="hero-terminal__prompt-sep">:</span><span class="hero-terminal__prompt-path">~</span><span class="hero-terminal__prompt-sym">$</span></span>` }}
+
+<section class="hero-terminal" aria-labelledby="hero-terminal-title">
+  <div class="hero-terminal__window hero-anim hero-fade">
+    <div class="hero-terminal__chrome" aria-hidden="true">
+      <span class="hero-terminal__dot hero-terminal__dot--clay"></span>
+      <span class="hero-terminal__dot hero-terminal__dot--sage"></span>
+      <span class="hero-terminal__dot hero-terminal__dot--mute"></span>
+      <span class="hero-terminal__chrome-title">hpc@hzcu: ~ — 80×24</span>
+    </div>
+    <div class="hero-terminal__screen" data-terminal>
+      <p class="hero-terminal__line" data-terminal-type>{{ $prompt | safeHTML }}&nbsp;<span class="hero-terminal__cmd">whoami</span></p>
+      <p class="hero-terminal__line hero-terminal__line--out" data-terminal-out>浙大城市学院 · 高性能计算团队</p>
+      <p class="hero-terminal__line" data-terminal-type>{{ $prompt | safeHTML }}&nbsp;<span class="hero-terminal__cmd">srun --nodes=2 --gpus=8 ./asc-final.run</span></p>
+      <p class="hero-terminal__line hero-terminal__line--ok" data-terminal-out>[OK] 8 × A800 allocated — job #2026 is running</p>
+      <p class="hero-terminal__line" data-terminal-type>{{ $prompt | safeHTML }}&nbsp;<span class="hero-terminal__cmd">./welcome.sh</span></p>
+      <div class="hero-terminal__masthead" data-terminal-out>
+        <p class="hero-terminal__headline">{{ $headline }}</p>
+        <pre class="hero-terminal__ascii" aria-hidden="true">{{ $ascii }}</pre>
+        <h1 class="sr-only" id="hero-terminal-title">{{ $title }}</h1>
+        <p class="hero-terminal__tagline">{{ $tagline }}</p>
+      </div>
+      <p class="hero-terminal__line hero-terminal__line--idle" data-terminal-idle>{{ $prompt | safeHTML }}&nbsp;<span class="hero-terminal__cursor" aria-hidden="true"></span></p>
+    </div>
+  </div>
+
+  <div class="hero-terminal__asides">
+    {{ with $aside_left }}
+      <div class="hero-terminal__aside hero-anim hero-fade" style="animation-delay: 0.7s">
+        <p>{{ . }}</p>
+      </div>
+    {{ end }}
+    {{ with $aside_right }}
+      <div class="hero-terminal__aside hero-anim hero-fade" style="animation-delay: 0.85s">
+        <p>{{ . }}</p>
+      </div>
+    {{ end }}
+  </div>
+
+  <div class="hero-terminal__cta-row hero-anim hero-fade" style="animation-delay: 1s">
+    <a class="hero-terminal__cta" href="{{ $cta_url }}">{{ $cta_text }}</a>
+  </div>
+</section>

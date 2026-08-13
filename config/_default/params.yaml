@@ -8,6 +8,7 @@
 plugins_js:
   - editorial
   - spotlight
+  - terminal
 
 appearance:
   theme_day: minimal
@@ -52,7 +53,7 @@ header:
 footer:
   block: editorial
   copyright:
-    notice: '© {year} Me. This work is licensed under {license}'
+    notice: '© {year} HZCU HPC Team. This work is licensed under {license}'
     license:
       enable: true
       allow_derivatives: false

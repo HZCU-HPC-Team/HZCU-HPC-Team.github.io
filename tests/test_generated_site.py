@@ -5,11 +5,38 @@ import shutil
 from html.parser import HTMLParser
 import subprocess
 import tempfile
+import time
 import unittest
 from pathlib import Path
 
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
+
+
+def _rmtree_retry(path):
+    """Windows/MSYS2: this Python process cannot delete files a child hugo
+    just wrote — its own unlink fails with PermissionError until the Python
+    process exits — while an external `rm` is unaffected. Delegate deletion
+    to `rm` when the direct rmtree hits that lock; a path that is already
+    gone counts as cleaned. On non-Windows the direct rmtree succeeds and
+    `rm` never runs."""
+    try:
+        shutil.rmtree(path)
+    except FileNotFoundError:
+        return
+    except PermissionError:
+        pass
+    if not Path(path).exists():
+        return
+    for attempt in range(5):
+        subprocess.run(["rm", "-rf", str(path)], capture_output=True)
+        if not Path(path).exists():
+            return
+        time.sleep(1)
+    try:
+        shutil.rmtree(path)
+    except FileNotFoundError:
+        return
 REQUIRED_ROUTES = ("/", "/people/", "/post/", "/daily/", "/recruitment/", "/memory/", "/accomplishments/", "/contact/")
 AUTHOR_ROUTE = "/author/sizhe-qiao-乔思喆/"
 REQUIRED_HOME_STRINGS = (
@@ -49,9 +76,9 @@ class GeneratedSiteTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.destination = tempfile.TemporaryDirectory()
-        cls.addClassCleanup(cls.destination.cleanup)
+        cls.addClassCleanup(_rmtree_retry, cls.destination.name)
         cls.fixture_root = tempfile.TemporaryDirectory()
-        cls.addClassCleanup(cls.fixture_root.cleanup)
+        cls.addClassCleanup(_rmtree_retry, cls.fixture_root.name)
         fixture = Path(cls.fixture_root.name) / "site"
         shutil.copytree(REPO_ROOT, fixture, ignore=shutil.ignore_patterns(".git", "public", "resources", ".hugo_build.lock"))
         cls.fixture_menus = fixture / "config/_default/menus.yaml"
@@ -66,7 +93,7 @@ class GeneratedSiteTests(unittest.TestCase):
     weight: 80
   - name: Exact child
     parent: resources
-    url: post/2025-06-03-ASC2024-prize/
+    url: post/2025-06-03-asc2024-prize/
     weight: 10
   - name: Descendant child
     parent: resources
@@ -222,7 +249,7 @@ homepage_preview: "  "
             encoding="utf-8",
         )
         cls.fixture_output = Path(tempfile.mkdtemp())
-        cls.addClassCleanup(shutil.rmtree, cls.fixture_output)
+        cls.addClassCleanup(_rmtree_retry, cls.fixture_output)
         fixture_environment = environment = os.environ.copy()
         fixture_environment.update({"PATH": f"{Path.home() / '.local/bin'}:{fixture_environment.get('PATH', '')}", "GOPROXY": "https://goproxy.cn", "GOSUMDB": "off", "GOMODCACHE": str(Path.home() / "go/pkg/mod")})
         fixture_environment.setdefault("HUGO_BIN", "hugo")
@@ -232,10 +259,11 @@ homepage_preview: "  "
             env=fixture_environment,
             capture_output=True,
             text=True,
+            encoding="utf-8",
         )
         if fixture_result.returncode:
             raise RuntimeError(f"Hugo fixture build failed with exit code {fixture_result.returncode}:\n{fixture_result.stdout}\n{fixture_result.stderr}")
-        cls.fixture_article = (cls.fixture_output / "post/2025-06-03-ASC2024-prize/index.html").read_text(encoding="utf-8")
+        cls.fixture_article = (cls.fixture_output / "post/2025-06-03-asc2024-prize/index.html").read_text(encoding="utf-8")
         cls.fixture_homepage = (cls.fixture_output / "index.html").read_text(encoding="utf-8")
         environment = os.environ.copy()
         environment.update(
@@ -253,6 +281,7 @@ homepage_preview: "  "
             env=environment,
             capture_output=True,
             text=True,
+            encoding="utf-8",
         )
         if result.returncode:
             raise RuntimeError(
@@ -281,7 +310,7 @@ homepage_preview: "  "
         return homepage.split(f'id="{section_id}"', 1)[1].split("</section>", 1)[0]
 
     def test_key_pages_have_exactly_one_primary_heading(self):
-        for route in REQUIRED_ROUTES + (AUTHOR_ROUTE, "/publication/", "/post/2025-06-03-ASC2024-prize/"):
+        for route in REQUIRED_ROUTES + (AUTHOR_ROUTE, "/publication/", "/post/2025-06-03-asc2024-prize/"):
             with self.subTest(route=route):
                 headings = self.inspect_generated_page(route).find_all("h1")
                 self.assertEqual(len(headings), 1, f"{route} should have one h1")
@@ -292,7 +321,7 @@ homepage_preview: "  "
     def test_key_route_images_have_alternative_text(self):
         for route in REQUIRED_ROUTES + (
             "/publication/",
-            "/post/2025-06-03-ASC2024-prize/",
+            "/post/2025-06-03-asc2024-prize/",
             "/daily/2025-12-21/",
         ):
             with self.subTest(route=route):
@@ -357,11 +386,12 @@ homepage_preview: "  "
         self.assertIn("font-family:anthropic sans,styrene a,Inter,helvetica neue,Arial,sans-serif", css)
         self.assertRegex(css, r"\.editorial-menu-link[^}]+font-weight:\s*450")
         self.assertRegex(css, r"\.editorial-menu-link[^}]+letter-spacing:\s*0?\.01em")
-        article = (self.output / "post/2025-06-03-ASC2024-prize/index.html").read_text(encoding="utf-8")
+        article = (self.output / "post/2025-06-03-asc2024-prize/index.html").read_text(encoding="utf-8")
         self.assertNotRegex(article, r"<script[^>]*wowchemy-headroom")
         self.assertIn('"use_headroom":false', article)
         source = (REPO_ROOT / "assets/js/editorial.js").read_text(encoding="utf-8")
-        self.assertIn('header.classList.toggle("is-compact", window.scrollY > 24)', source)
+        # The header is always compact: no scroll-driven size toggle remains.
+        self.assertNotIn("is-compact", source)
         self.assertNotRegex(source, r"classList\.(?:add|toggle)\(\s*['\"](?:is-)?hidden")
         self.assertNotRegex(source, r"\.style\.(?:display|visibility)\s*=")
 
@@ -388,29 +418,58 @@ homepage_preview: "  "
             with self.subTest(expected=expected):
                 self.assertIn(expected, self.homepage)
 
-    def test_homepage_hero_is_spotlight(self):
+    def test_homepage_hero_is_terminal(self):
         for expected in (
-            'class="hero-spotlight"',
-            "data-spotlight-reveal",
-            "data-spotlight-canvas",
-            "hero-zoom",
+            'class="hero-terminal"',
+            "data-terminal",
+            "hero-terminal__window",
+            "hero-terminal__cursor",
+            "hero-terminal__ascii",
+            "hero-terminal__prompt-user",
             "Beyond the clock",
             "HZCU HPC Team",
+            "超越时钟，探索计算的极限",
+            "srun --nodes=2 --gpus=8",
             "Join Us",
             'href="/recruitment/join-us/"',
-            "fonts.googleapis.com",
-            "hf_20260609_195923",
-            "hf_20260609_201152",
         ):
             with self.subTest(expected=expected):
                 self.assertIn(expected, self.homepage)
-        self.assertEqual(self.homepage.count('id="section-hero-spotlight"'), 1)
+        self.assertEqual(self.homepage.count('id="section-hero-terminal"'), 1)
+
+    def test_homepage_hero_ascii_art_contract(self):
+        # The masthead renders as decorative ASCII art read from ./ascii,
+        # with a visually-hidden h1 keeping the single-h1 semantics.
+        self.assertIn("__  __", self.homepage)
+        self.assertIn(
+            '<h1 class="sr-only" id="hero-terminal-title">HZCU HPC Team</h1>',
+            self.homepage,
+        )
+        self.assertIn("hero-terminal__ascii", self.homepage)
+
+    def test_terminal_hero_light_contract(self):
+        # Warm editorial terminal: cream section, raised-paper card, ink text,
+        # centered intro pair and CTA row (spec: 暖米白背景 + 炭黑文字).
+        css = "".join(self.compiled_css().split())
+        self.assertRegex(css, r"\.hero-terminal\{[^}]*background:var\(--color-paper\)")
+        self.assertNotRegex(css, r"\.hero-terminal\{[^}]*var\(--color-inverse\)")
+        self.assertRegex(css, r"\.hero-terminal__window\{[^}]*background:var\(--color-paper-raised\)")
+        self.assertRegex(css, r"\.hero-terminal__window\{[^}]*border-radius:0?\.375rem")
+        self.assertRegex(css, r"\.hero-terminal__prompt-user\{[^}]*color:var\(--color-sage-dark\)")
+        self.assertRegex(css, r"\.hero-terminal__prompt-host\{[^}]*color:var\(--color-clay-dark\)")
+        self.assertRegex(css, r"\.hero-terminal__screen\{[^}]*color:var\(--color-ink\)")
+        self.assertRegex(css, r"\.hero-terminal__asides\{[^}]*align-items:center")
+        self.assertRegex(css, r"\.hero-terminal__ascii\{[^}]*overflow-x:auto")
+        self.assertRegex(css, r"@media\(min-width:40rem\)\{[^@]*?\.hero-terminal__asides\{[^}]*flex-direction:row[^}]*justify-content:center")
+        self.assertRegex(css, r"\.hero-terminal__cta-row\{[^}]*justify-content:center")
+        self.assertIn("--color-paper-raised:#fbf8f0", css)
+        self.assertIn("--color-sage-dark:#55634f", css)
 
     def test_svg_and_animated_gif_hero_assets_build_with_original_paths(self):
         for extension, fixture_data in (("svg", SVG_HERO), ("gif", ANIMATED_GIF_HERO)):
             with self.subTest(extension=extension):
                 fixture_root = tempfile.TemporaryDirectory()
-                self.addCleanup(fixture_root.cleanup)
+                self.addCleanup(_rmtree_retry, fixture_root.name)
                 fixture = Path(fixture_root.name) / "site"
                 shutil.copytree(
                     REPO_ROOT,
@@ -420,14 +479,20 @@ homepage_preview: "  "
                 image_name = f"hero.{extension}"
                 (fixture / "assets/media" / image_name).write_bytes(fixture_data)
                 homepage = fixture / "content/_index.md"
+                # Swap the terminal hero for a hero-spotlight block carrying a
+                # local image, so the spotlight partial's passthrough is tested.
                 homepage.write_text(
-                    homepage.read_text(encoding="utf-8").replace(
-                        "        base:", f"        filename: {image_name}\n        base:", 1
+                    homepage.read_text(encoding="utf-8")
+                    .replace("- block: hero-terminal", "- block: hero-spotlight", 1)
+                    .replace(
+                        "      headline: Beyond the clock",
+                        f"      headline: Beyond the clock\n      image:\n        filename: {image_name}",
+                        1,
                     ),
                     encoding="utf-8",
                 )
                 destination = Path(tempfile.mkdtemp())
-                self.addCleanup(shutil.rmtree, destination)
+                self.addCleanup(_rmtree_retry, destination)
                 environment = os.environ.copy()
                 environment.update(
                     {
@@ -444,6 +509,7 @@ homepage_preview: "  "
                     env=environment,
                     capture_output=True,
                     text=True,
+                    encoding="utf-8",
                 )
                 self.assertEqual(result.returncode, 0, f"Hugo build failed:\n{result.stdout}\n{result.stderr}")
                 generated_homepage = (destination / "index.html").read_text(encoding="utf-8")
@@ -553,7 +619,7 @@ homepage_preview: "  "
 
     def test_small_raster_candidates_do_not_upscale(self):
         homepage = (self.fixture_output / "index.html").read_text(encoding="utf-8")
-        hero = homepage.split('class="hero-spotlight"', 1)[1].split("</section>", 1)[0]
+        hero = homepage.split('class="hero-terminal"', 1)[1].split("</section>", 1)[0]
         self.assertNotIn("srcset=", hero)
         listing = (self.fixture_output / "post/index.html").read_text(encoding="utf-8")
         entry = listing.split("Editorial small", 1)[1].split("</article>", 1)[0]
@@ -1002,9 +1068,9 @@ homepage_preview: "  "
         css = self.compiled_css()
         people = (REPO_ROOT / "assets/scss/components/_people.scss").read_text(encoding="utf-8")
         self.assertIn("@media (min-width: 64rem)", people)
-        self.assertIn("grid-template-columns: repeat(4", people)
-        self.assertIn("max-width: 80rem", people)
-        self.assertRegex(people, r"font-size: clamp\(1\.2rem, [^;]+, 1\.5rem\)")
+        self.assertIn("grid-template-columns: repeat(6", people)
+        self.assertIn("max-width: 72rem", people)
+        self.assertRegex(people, r"font-size: clamp\(1\.05rem, [^;]+, 1\.3rem\)")
         self.assertIn("--heading-hero-compact", css)
         self.assertIn("--heading-display-compact", css)
         self.assertIn("#profile-page .portrait-title h1", css)
@@ -1107,7 +1173,7 @@ homepage_preview: "  "
         self.assertRegex(page, r'<img[^>]+class="avatar [^"]+"[^>]+src="/author/rui-hu/avatar')
 
     def test_search_close_and_share_icons_have_accessible_touch_targets(self):
-        article = self.output / "post/2025-06-03-ASC2024-prize/index.html"
+        article = self.output / "post/2025-06-03-asc2024-prize/index.html"
         page = article.read_text(encoding="utf-8")
         close = re.search(r'<a[^>]+class="js-search"[^>]*>.*?</a>', page)
         self.assertIsNotNone(close)
@@ -1130,8 +1196,8 @@ homepage_preview: "  "
     def test_task8_style_selectors_match_generated_home_contact_and_publication_dom(self):
         home_sections = re.findall(r'<section[^>]*class="[^"]*home-section[^"]*"[^>]*>', self.homepage)
         self.assertGreaterEqual(len(home_sections), 3)
-        self.assertIn("wg-hero-spotlight", home_sections[0])
-        self.assertTrue(all("wg-hero-spotlight" not in section for section in home_sections[1:]))
+        self.assertIn("wg-hero-terminal", home_sections[0])
+        self.assertTrue(all("wg-hero-terminal" not in section for section in home_sections[1:]))
 
         collection = self.homepage_section("introduction")
         self.assertNotIn('class="section-heading', collection)
@@ -1166,7 +1232,10 @@ homepage_preview: "  "
         css = "".join(self.compiled_css().split())
         self.assertRegex(css, r"\.hero-spotlight\{[^}]*height:100dvh")
         self.assertRegex(css, r"\.hero-spotlight__reveal\{[^}]*opacity:0")
-        self.assertRegex(css, r"\.editorial-header\.is-over-hero\{[^}]*background")
+        # The frosted over-hero header state is gone: the header stays a solid
+        # warm-paper bar with a thin bottom border (spec: no glass blur).
+        self.assertNotIn(".editorial-header.is-over-hero", css)
+        self.assertNotIn("backdrop-filter", css)
         self.assertIn("@media(prefers-reduced-motion:reduce){", css)
 
     def test_spotlight_hero_js_source_contract(self):
@@ -1298,7 +1367,7 @@ homepage_preview: "  "
         self.assertRegex(self.homepage, r'<button[^>]+aria-label="[^"]+"')
 
     def test_article_uses_editorial_structure_and_preserves_content(self):
-        page = self.output / "post/2025-06-03-ASC2024-prize/index.html"
+        page = self.output / "post/2025-06-03-asc2024-prize/index.html"
         article = page.read_text(encoding="utf-8")
         self.assertEqual(article.count("<main"), 1)
         self.assertEqual(article.count('id="main-content"'), 1)
@@ -1312,7 +1381,7 @@ homepage_preview: "  "
         self.assertIn("在第12届ASC世界大学生超级计算机竞赛", article)
 
     def test_article_raster_images_use_safe_responsive_dimensions(self):
-        article = self.output / "post/2025-06-03-ASC2024-prize/index.html"
+        article = self.output / "post/2025-06-03-asc2024-prize/index.html"
         page = article.read_text(encoding="utf-8")
         for alt in ("团队获奖证书1", "团队获奖证书2"):
             with self.subTest(alt=alt):
@@ -1421,23 +1490,23 @@ homepage_preview: "  "
         self.assertNotIn("Hidden banner caption", page)
 
     def test_search_dialog_does_not_duplicate_the_page_h1(self):
-        article = (self.output / "post/2025-06-03-ASC2024-prize/index.html").read_text(encoding="utf-8")
+        article = (self.output / "post/2025-06-03-asc2024-prize/index.html").read_text(encoding="utf-8")
         self.assertEqual(article.count("<h1"), 1)
         self.assertRegex(article, r'<(?:h2|div) class="search-title">Search</(?:h2|div)>')
 
     def test_descendant_page_marks_its_menu_section_as_current_location(self):
-        article = self.output / "post" / "2025-06-03-ASC2024-prize" / "index.html"
+        article = self.output / "post" / "2025-06-03-asc2024-prize" / "index.html"
         page = article.read_text(encoding="utf-8")
         self.assertRegex(
             page,
-            r'<a class="editorial-menu-link is-active" href="/post" aria-current="location">\s*<span>Post</span>',
+            r'<a class="editorial-menu-link is-active" href="/post" aria-current="location">\s*<span>动态</span>',
         )
 
     def test_fixture_dropdown_states_and_external_links_are_generated(self):
         page = self.fixture_article
         self.assertIn('class="editorial-menu-details is-active"', page)
         self.assertIn('<summary aria-current="location">', page)
-        self.assertRegex(page, r'<a class="is-active" href="/post/2025-06-03-ASC2024-prize/" aria-current="page">')
+        self.assertRegex(page, r'<a class="is-active" href="/post/2025-06-03-asc2024-prize/" aria-current="page">')
         self.assertRegex(page, r'<a class="is-active" href="/post" aria-current="location">')
         self.assertRegex(page, r'<a class="" href="https://example.com" target="_blank" rel="noopener">')
         self.assertNotRegex(page, r'<a class="is-active" href="/"')
@@ -1446,15 +1515,18 @@ homepage_preview: "  "
         scripts = re.findall(r'<script[^>]+src="([^"]+)"', self.homepage)
         self.assertTrue(any("wowchemy" in src for src in scripts))
         source = (REPO_ROOT / "assets/js/editorial.js").read_text(encoding="utf-8")
-        for expected in ("prefers-reduced-motion", "IntersectionObserver", "data-editorial-header"):
+        for expected in ("prefers-reduced-motion", "IntersectionObserver"):
             with self.subTest(expected=expected):
                 self.assertIn(expected, source)
-        self.assertIn('data-editorial-header', self.homepage)
+        # The header no longer needs a JS hook: it is always compact.
+        self.assertNotIn("data-editorial-header", source)
+        self.assertNotIn("data-editorial-header", self.homepage)
         self.assertIn('data-reveal', self.homepage)
         bundles = "\n".join(stylesheet.read_text(encoding="utf-8") for stylesheet in self.output.rglob("*.js"))
-        for expected in ("IntersectionObserver", "prefers-reduced-motion", "data-editorial-header"):
+        for expected in ("IntersectionObserver", "prefers-reduced-motion"):
             with self.subTest(bundle_expected=expected):
                 self.assertIn(expected, bundles)
+        self.assertNotIn("data-editorial-header", bundles)
 
     def test_editorial_motion_progressively_enhances_visible_content(self):
         source = (REPO_ROOT / "assets/js/editorial.js").read_text(encoding="utf-8")
@@ -1484,18 +1556,23 @@ homepage_preview: "  "
         self.assertLessEqual(int(delay_cap.group(2)) * int(delay_cap.group(3)), 180)
 
     def test_compact_header_state_has_a_visual_css_contract(self):
+        # The header is always its scrolled (compact) size: no scroll-driven
+        # size toggle remains in CSS or JS.
         navigation = (REPO_ROOT / "assets/scss/components/_navigation.scss").read_text(encoding="utf-8")
-        compact = re.search(r"\.editorial-header\.is-compact\s+\.editorial-nav-container\s*\{([^}]+)\}", navigation, re.S)
-        self.assertIsNotNone(compact)
-        self.assertRegex(compact.group(1), r"min-height:\s*[0-9.]+rem")
-        self.assertIn("transition:", navigation)
+        self.assertNotIn(".editorial-header.is-compact", navigation)
+        container = re.search(r"\.editorial-nav-container\s*\{([^}]+)\}", navigation, re.S)
+        self.assertIsNotNone(container)
+        self.assertRegex(container.group(1), r"min-height:\s*3\.5rem")
+        source = (REPO_ROOT / "assets/js/editorial.js").read_text(encoding="utf-8")
+        self.assertNotIn("is-compact", source)
 
     def test_reduced_motion_css_is_compiled(self):
         css = "\n".join(stylesheet.read_text(encoding="utf-8") for stylesheet in self.output.rglob("*.css"))
         normalized_css = "".join(css.split())
         self.assertIn("@media(prefers-reduced-motion:reduce)", normalized_css)
         self.assertIn("[data-reveal].is-reveal-ready", normalized_css)
-        self.assertIn(".editorial-header.is-compact .editorial-nav-container", css)
+        self.assertRegex(normalized_css, r"\.editorial-nav-container\{[^}]*min-height:3\.5rem")
+        self.assertNotIn("is-compact", css)
 
     def test_dark_theme_is_not_emitted(self):
         self.assertNotIn("theme-dropdown", self.homepage)

@@ -13,8 +13,11 @@ authors:
 # Is this the primary user of the site?
 superuser: false
 
+# Pin to the front of the people directory group
+pin_first: true
+
 # Role/position
-role: Member of the HZCU High-Performance Computing Team
+role: Leader of the HZCU High-Performance Computing Team
 
 
 # Organizations/Affiliations

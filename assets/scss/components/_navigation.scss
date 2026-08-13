@@ -18,20 +18,10 @@
   gap: var(--space-4);
   width: 100%;
   max-width: var(--content-max);
-  min-height: 4.5rem;
+  /* Always the scrolled (compact) height: the header never changes size. */
+  min-height: 3.5rem;
   margin: 0 auto;
   padding: 0 var(--page-gutter);
-  transition: min-height 220ms var(--ease-out), padding 220ms var(--ease-out);
-}
-
-.editorial-header.is-compact .editorial-nav-container {
-  min-height: 3.5rem;
-}
-
-@include reduce-motion {
-  .editorial-nav-container {
-    transition: none;
-  }
 }
 
 .editorial-brand {
@@ -220,28 +210,4 @@
     border: 0;
     border-left: 1px solid var(--color-line);
   }
-}
-
-/* Dark state while a full-screen hero is in view (toggled by editorial.js). */
-.editorial-header.is-over-hero {
-  background: rgba(36, 36, 31, 0.65);
-  border-bottom-color: transparent;
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-}
-
-.editorial-header.is-over-hero .editorial-brand,
-.editorial-header.is-over-hero .editorial-menu-link,
-.editorial-header.is-over-hero .editorial-menu-details summary,
-.editorial-header.is-over-hero .editorial-search {
-  color: var(--color-inverse-text);
-}
-
-.editorial-header.is-over-hero .editorial-menu-toggle {
-  color: var(--color-inverse-text);
-  border-color: rgba(242, 239, 231, 0.4);
-}
-
-.editorial-header.is-over-hero .editorial-menu.collapse.show {
-  background: var(--color-inverse);
 }

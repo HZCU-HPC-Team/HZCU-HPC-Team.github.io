@@ -1,0 +1,265 @@
+/* Full-screen warm editorial hero: a light terminal window on the paper
+   background. A typing animation (assets/js/terminal.js) "runs" a few
+   HPC-flavoured commands whose final output reveals the team masthead. Lines
+   stay visible without JS; the typing effect only activates after JS adds
+   `.is-animated`, and hidden lines keep their layout space (visibility, not
+   display) so the window never jumps. */
+
+.home-section.wg-hero-terminal {
+  padding-block: 0;
+}
+
+.home-section.wg-hero-terminal > .container {
+  max-width: none;
+  padding-inline: 0;
+}
+
+.hero-terminal {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  /* Header 是 sticky 在文档流里的（恒定约 3.5rem 高），会从首屏挤掉一段，
+     这里减去它，保证 aside 和 CTA 落在首屏可视区内。
+     窗口靠上（flex-start），asides 用 margin-top:auto 沉底。 */
+  min-height: calc(100vh - 3.5rem);
+  min-height: calc(100dvh - 3.5rem);
+  padding: clamp(2.5rem, 5vh, 4rem) var(--page-gutter) clamp(2rem, 5vh, 3.5rem);
+  background: var(--color-paper);
+}
+
+.hero-terminal__window {
+  width: 100%;
+  max-width: 46rem;
+  overflow: hidden;
+  background: var(--color-paper-raised);
+  border: 1px solid var(--color-line);
+  border-radius: 0.375rem;
+  box-shadow: 0 1rem 2.5rem rgba(31, 30, 26, 0.08);
+}
+
+.hero-terminal__chrome {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.7rem 1rem;
+  background: var(--color-paper-deep);
+  border-bottom: 1px solid var(--color-line);
+}
+
+.hero-terminal__dot {
+  width: 0.7rem;
+  height: 0.7rem;
+  border-radius: 50%;
+}
+
+.hero-terminal__dot--clay { background: var(--color-clay-light); }
+.hero-terminal__dot--sage { background: var(--color-sage); }
+.hero-terminal__dot--mute { background: var(--color-line-strong); }
+
+.hero-terminal__chrome-title {
+  flex: 1;
+  color: var(--color-muted);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  text-align: center;
+}
+
+.hero-terminal__screen {
+  padding: 1.25rem 1.5rem;
+  color: var(--color-ink);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  line-height: 1.45;
+}
+
+.hero-terminal__line {
+  margin: 0;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.hero-terminal__line + .hero-terminal__line,
+.hero-terminal__line + .hero-terminal__masthead,
+.hero-terminal__masthead + .hero-terminal__line {
+  margin-top: 0.45em;
+}
+
+/* bash-style segmented prompt: user=sage, host=clay, separators=muted. */
+.hero-terminal__prompt {
+  font-weight: 400;
+}
+
+.hero-terminal__prompt-user {
+  color: var(--color-sage-dark);
+}
+
+.hero-terminal__prompt-sep {
+  color: var(--color-muted);
+}
+
+.hero-terminal__prompt-host {
+  color: var(--color-clay-dark);
+}
+
+.hero-terminal__prompt-path {
+  color: var(--color-muted);
+}
+
+.hero-terminal__prompt-sym {
+  color: var(--color-ink);
+  font-weight: 700;
+}
+
+.hero-terminal__cmd {
+  color: var(--color-sage-dark);
+}
+
+.hero-terminal__line--out {
+  color: var(--color-muted);
+}
+
+.hero-terminal__line--ok {
+  color: var(--color-sage-dark);
+}
+
+/* Typing state (only after JS opts in): lines wait their turn but keep space. */
+.hero-terminal__screen.is-animated [data-terminal-type],
+.hero-terminal__screen.is-animated [data-terminal-out],
+.hero-terminal__screen.is-animated [data-terminal-idle] {
+  visibility: hidden;
+}
+
+.hero-terminal__screen.is-animated .is-typed {
+  visibility: visible;
+}
+
+.hero-terminal__cursor {
+  display: inline-block;
+  width: 0.58em;
+  height: 1.05em;
+  vertical-align: text-bottom;
+  background: var(--color-ink);
+  animation: terminalBlink 1.06s step-end infinite;
+}
+
+@keyframes terminalBlink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.hero-terminal__masthead {
+  margin-top: 0;
+  padding-block: 0.4em 0.2em;
+}
+
+.hero-terminal__headline {
+  margin: 0 0 0.6em;
+  color: var(--color-clay-dark);
+  font-size: 0.85em;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+}
+
+/* ASCII-art masthead read from ./ascii (decorative; the real heading is the
+   sr-only h1). Narrow screens scroll it inside the window, like a terminal. */
+.hero-terminal__ascii {
+  margin: 0;
+  overflow-x: auto;
+  font-size: 0.55rem;
+  line-height: 1.15;
+}
+
+.hero-terminal__tagline {
+  margin: 0.6em 0 0;
+  color: var(--color-muted);
+  font-family: var(--font-body);
+  font-size: 1rem;
+}
+
+.hero-terminal__asides {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-5);
+  width: 100%;
+  margin-top: auto;
+  padding-top: var(--space-6);
+}
+
+.hero-terminal__aside {
+  max-width: 34ch;
+  color: var(--color-muted);
+  font-size: 0.875rem;
+  line-height: 1.625;
+  text-align: center;
+}
+
+.hero-terminal__aside p {
+  margin: 0;
+}
+
+.hero-terminal__cta-row {
+  display: flex;
+  justify-content: center;
+  padding-top: var(--space-5);
+}
+
+.hero-terminal__cta {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0.75rem 1.25rem;
+  border-radius: 999px;
+  color: var(--color-paper);
+  background: var(--color-clay);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition:
+    background-color 180ms var(--ease-out),
+    transform 180ms var(--ease-out);
+}
+
+.hero-terminal__cta:hover,
+.hero-terminal__cta:focus-visible {
+  color: var(--color-paper);
+  background: var(--color-clay-dark);
+  transform: scale(1.03);
+}
+
+@include reduce-motion {
+  .hero-anim {
+    animation: none;
+    opacity: 1;
+  }
+
+  .hero-terminal__cursor {
+    animation: none;
+  }
+}
+
+@media (min-width: 40rem) {
+  .hero-terminal__screen {
+    font-size: 0.8rem;
+  }
+
+  .hero-terminal__tagline {
+    font-size: 1.1rem;
+  }
+
+  .hero-terminal__asides {
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: center;
+    gap: var(--space-6);
+  }
+}
+
+@media (min-width: 48rem) {
+  .hero-terminal__asides {
+    padding-top: var(--space-5);
+  }
+}

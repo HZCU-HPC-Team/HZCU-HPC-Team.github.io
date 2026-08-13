@@ -5,13 +5,11 @@ date: 2022-10-24
 type: landing
 
 sections:
-  - block: hero-spotlight
+  - block: hero-terminal
     content:
       headline: Beyond the clock
       title: HZCU HPC Team
-      image:
-        base: 'https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260609_195923_b0ba8ace-1d1d-4f2c-9a28-1ab84b330680.png&w=1280&q=85'
-        reveal: 'https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260609_201152_bba90a12-bf12-459f-91f0-51f237dbaf3b.png&w=1280&q=85'
+      tagline: 超越时钟，探索计算的极限
       aside_left: 浙大城市学院高性能计算（HPC）团队隶属于学校超算中心，专注性能评估与优化，在 ASC、IPCC、CPC 等国际竞赛中屡获佳绩。
       aside_right: 对高性能计算、并行计算与性能优化感兴趣？欢迎加入我们，一起探索计算科学的极限。
       cta:

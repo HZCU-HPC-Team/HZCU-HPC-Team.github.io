@@ -19,9 +19,10 @@
   {{ end }}
 {{ end }}
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,400;1,500;1,600&display=swap">
+{{/* Google Fonts 国内镜像（fonts.loli.net），避免 fonts.googleapis.com 在国内超时导致白屏 */}}
+<link rel="preconnect" href="https://fonts.loli.net">
+<link rel="preconnect" href="https://gstatic.loli.net" crossorigin>
+<link rel="stylesheet" href="https://fonts.loli.net/css2?family=Playfair+Display:ital,wght@1,400;1,500;1,600&display=swap">
 
 <section class="hero-spotlight" aria-labelledby="hero-spotlight-title">
   <div class="hero-spotlight__base hero-zoom" role="img" aria-label="{{ $title | plainify }}" {{ with $base_url }}style="background-image: url('{{ . }}')"{{ end }}></div>

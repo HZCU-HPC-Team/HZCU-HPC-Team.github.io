@@ -9,3 +9,6 @@ assets/jsconfig.json
 # Local tooling (Claude Code, superpowers plugin)
 .claude/
 .superpowers/
+
+# Python
+__pycache__/

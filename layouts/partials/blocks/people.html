@@ -25,12 +25,16 @@
     {{ $sort_by = partial "blox-core/functions/get_sort_by_parameter" $sort_by }}
     {{ $sort_order := cond ($block.content.sort_ascending | default true) "asc" "desc" }}
     {{ $query = sort $query $sort_by $sort_order }}
+    {{/* Members with `pin_first: true` lead their group, keeping the sorted order for the rest. */}}
+    {{ $ordered := slice }}
+    {{ range $p := $query }}{{ if $p.Params.pin_first }}{{ $ordered = $ordered | append $p }}{{ end }}{{ end }}
+    {{ range $p := $query }}{{ if not $p.Params.pin_first }}{{ $ordered = $ordered | append $p }}{{ end }}{{ end }}
     {{ if $query }}
       {{ $group_id := printf "%s-%s" $.wcIdentifier ($group | anchorize) }}
       <section class="editorial-people__group" aria-labelledby="{{ $group_id }}">
         {{ if $has_multiple_groups }}<h2 id="{{ $group_id }}">{{ $group | markdownify }}</h2>{{ end }}
         <div class="editorial-people__grid">
-          {{ range $person := $query }}
+          {{ range $person := $ordered }}
             {{ $avatar := ($person.Resources.ByType "image").GetMatch "*avatar*" }}
             {{ $link := "" }}
             {{ with site.GetPage (printf "/authors/%s" (path.Base $person.File.Dir)) }}{{ $link = .RelPermalink }}{{ end }}
