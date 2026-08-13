@@ -3,7 +3,6 @@
 title: Yuhan Guo 郭雨翰
 
 # Full Name (for SEO)
-title: Yuhan Guo 
 first_name: Yuhan
 last_name: Guo
 

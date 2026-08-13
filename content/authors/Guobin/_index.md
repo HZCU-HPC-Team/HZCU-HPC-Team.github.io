@@ -3,7 +3,6 @@
 title: Guobin Zhang 张国宾
 
 # Full Name (for SEO)
-title: Guobin Zhang 张国宾 
 first_name: Guobin
 last_name: Zhang
 
