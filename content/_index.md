@@ -10,11 +10,8 @@ sections:
       headline: Beyond the clock
       title: HZCU HPC Team
       tagline: 超越时钟，探索计算的极限
-      aside_left: 浙大城市学院高性能计算（HPC）团队隶属于学校超算中心，专注性能评估与优化，在 ASC、IPCC、CPC 等国际竞赛中屡获佳绩。
-      aside_right: 对高性能计算、并行计算与性能优化感兴趣？欢迎加入我们，一起探索计算科学的极限。
-      cta:
-        text: Join Us
-        url: /recruitment/join-us/
+      aside_left: 浙大城市学院超算队隶属于学校超算中心，专注性能评估与优化，在 ASC、IPCC、CPC 等国际竞赛中屡获佳绩。
+      aside_right: 对高性能计算、AI、GPU 计算等方向感兴趣？欢迎加入我们，一起探索计算科学的极限。
   - block: collection
     content:
       title:
@@ -35,6 +32,16 @@ sections:
       view: homepage-preview
       columns: '1'
     id: introduction
+
+  - block: markdown
+    content:
+      title:
+      subtitle:
+      text: |
+        {{< scroll-down 0.7 >}}
+    design:
+      columns: '1'
+    id: scroll-to-join
 
   - block: collection
     content:
@@ -79,6 +86,7 @@ sections:
         {{% cta cta_link="./people/" cta_text="Meet the team →" %}}
     design:
       columns: '1'
+    id: meet-the-team
 
 
 ---

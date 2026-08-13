@@ -31,10 +31,20 @@ banner:
 
 ## 2025年
 
-### ASC2024 Second Prize (Team 1)
+### ASC2025 Second Prize (Team 1)
 - **奖项**：ASC24 Student Supercomputer Challenge Preliminary Second Prize
 - **日期**：2025年2月
 
-### ASC2024 Second Prize (Team 2)
+### ASC2025 Second Prize (Team 2)
 - **奖项**：ASC24 Student Supercomputer Challenge Preliminary Second Prize
 - **日期**：2025年2月
+
+## 2026年
+
+### ASC2026 Second Prize (Team 1)
+- **奖项**：ASC24 Student Supercomputer Challenge Preliminary Second Prize
+- **日期**：2026年2月
+
+### ASC2026 Second Prize (Team 2)
+- **奖项**：ASC24 Student Supercomputer Challenge Preliminary Second Prize
+- **日期**：2026年2月
