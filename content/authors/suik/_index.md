@@ -14,7 +14,7 @@ authors:
 superuser: true
 
 # Role/position
-role: Senior Engineer
+role: Associate Professor，PhD
 
 # Organizations/Affiliations
 organizations:
