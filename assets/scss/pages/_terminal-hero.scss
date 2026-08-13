@@ -164,12 +164,18 @@
 }
 
 /* ASCII-art masthead read from ./ascii (decorative; the real heading is the
-   sr-only h1). Narrow screens scroll it inside the window, like a terminal. */
+   sr-only h1). The 125-column wide art overflows on phones, so ./ascii-mobile
+   holds the same text (HZCU / HPC / TEAM) stacked into ~43-column rows; the
+   swap happens in the max-width query at the end of this file. */
 .hero-terminal__ascii {
   margin: 0;
   overflow-x: auto;
   font-size: 0.55rem;
   line-height: 1.15;
+}
+
+.hero-terminal__ascii--mobile {
+  display: none;
 }
 
 .hero-terminal__tagline {
@@ -261,5 +267,18 @@
 @media (min-width: 48rem) {
   .hero-terminal__asides {
     padding-top: var(--space-5);
+  }
+}
+
+/* Below the desktop masthead breakpoint, swap the wide art for the stacked
+   mobile variant (43 columns ≈ 227px at 0.55rem — fits a 360px viewport). */
+@media (max-width: 47.99rem) {
+  .hero-terminal__ascii {
+    display: none;
+  }
+
+  .hero-terminal__ascii--mobile {
+    display: block;
+    text-align: center;
   }
 }

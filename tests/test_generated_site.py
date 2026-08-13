@@ -429,7 +429,8 @@ homepage_preview: "  "
             "Beyond the clock",
             "HZCU HPC Team",
             "超越时钟，探索计算的极限",
-            "srun --nodes=2 --gpus=8",
+            "srun --nodes=1 --gpus=2",
+            "[OK] 2× 4090 allocated",
             "Join Us",
             'href="/recruitment/join-us/"',
         ):
@@ -446,6 +447,28 @@ homepage_preview: "  "
             self.homepage,
         )
         self.assertIn("hero-terminal__ascii", self.homepage)
+
+    def test_homepage_hero_ascii_art_mobile_variant(self):
+        # Narrow screens swap the wide 125-column art for a stacked
+        # HZCU / HPC / TEAM variant (./ascii-mobile) that fits ~43 columns.
+        self.assertEqual(
+            self.homepage.count('class="hero-terminal__ascii'),
+            2,
+        )
+        self.assertIn("hero-terminal__ascii--mobile", self.homepage)
+        css = "".join(self.compiled_css().split())
+        self.assertRegex(
+            css,
+            r"\.hero-terminal__ascii--mobile\{[^}]*display:none",
+        )
+        self.assertRegex(
+            css,
+            r"@media\(max-width:47\.99rem\)\{[^@]*?\.hero-terminal__ascii\{[^}]*display:none",
+        )
+        self.assertRegex(
+            css,
+            r"@media\(max-width:47\.99rem\)\{[^@]*?\.hero-terminal__ascii--mobile\{[^}]*display:block",
+        )
 
     def test_terminal_hero_light_contract(self):
         # Warm editorial terminal: cream section, raised-paper card, ink text,
