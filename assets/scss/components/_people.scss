@@ -119,13 +119,11 @@
   height: 2.75rem;
   place-items: center;
   color: var(--color-clay-dark);
-  border: 1px solid var(--color-line);
 }
 
 .editorial-person .network-icon a:hover,
 .editorial-person .network-icon a:focus-visible {
-  color: var(--color-paper);
-  background: var(--color-clay-dark);
+  color: var(--color-clay);
 }
 
 #profile-page {
