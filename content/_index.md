@@ -33,16 +33,6 @@ sections:
       columns: '1'
     id: introduction
 
-  - block: markdown
-    content:
-      title:
-      subtitle:
-      text: |
-        {{< scroll-down 0.7 >}}
-    design:
-      columns: '1'
-    id: scroll-to-join
-
   - block: collection
     content:
       title:

@@ -6,26 +6,6 @@
   border-top: 1px solid var(--color-line);
 }
 
-/* The scroll-down interlude between the two recruitment collections only
-   holds the button — keep it compact (and nudged upward) so the
-   INTRODUCTION and JOIN US sections stay close together. */
-.home-section#scroll-to-join {
-  margin-top: -3rem;
-  padding-block: 0;
-  border-top: none;
-}
-
-/* No blank gaps around the interlude: the adjacent collections drop the
-   padding (and divider line) facing the button. */
-.home-section#introduction {
-  padding-bottom: 0;
-}
-
-.home-section#join-us {
-  padding-top: 0;
-  border-top: none;
-}
-
 .home-section > .container {
   padding-inline: var(--page-gutter);
 }
