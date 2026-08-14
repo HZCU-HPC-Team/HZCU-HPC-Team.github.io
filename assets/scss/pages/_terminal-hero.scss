@@ -23,7 +23,7 @@
   width: 100%;
   /* Header 是 sticky 在文档流里的（恒定约 3.5rem 高），会从首屏挤掉一段，
      这里减去它，保证 aside 和 CTA 落在首屏可视区内。
-     窗口靠上（flex-start），asides 用 margin-top:auto 沉底。 */
+     窗口靠上（flex-start），asides 紧随窗口下方，间距固定不随视口拉伸。 */
   min-height: calc(100vh - 3.5rem);
   min-height: calc(100dvh - 3.5rem);
   padding: clamp(2.5rem, 5vh, 4rem) var(--page-gutter) clamp(2rem, 5vh, 3.5rem);
@@ -32,7 +32,10 @@
 
 .hero-terminal__window {
   width: 100%;
-  max-width: 46rem;
+  /* Fluid cap: the window grows with the viewport so its content (screen
+     text and the 125-column ASCII art) keeps a coordinated proportion on
+     every browser size instead of freezing at one fixed width. */
+  max-width: clamp(46rem, calc(42rem + 6vw), 54rem);
   overflow: hidden;
   background: var(--color-paper-raised);
   border: 1px solid var(--color-line);
@@ -71,7 +74,9 @@
   padding: 1.25rem 1.5rem;
   color: var(--color-ink);
   font-family: var(--font-mono);
-  font-size: 0.75rem;
+  /* Fluid screen text: scales smoothly with the viewport (0.75rem on small
+     windows up to 0.9rem on large ones), matching the window's fluid cap. */
+  font-size: clamp(0.75rem, calc(0.7rem + 0.35vw), 0.9rem);
   line-height: 1.45;
 }
 
@@ -170,7 +175,10 @@
 .hero-terminal__ascii {
   margin: 0;
   overflow-x: auto;
-  font-size: 0.55rem;
+  /* Fluid art size keeps the 125-column masthead in step with the window:
+     it never outgrows the 46rem minimum window (125ch × 0.55em ≈ 43rem at
+     the 0.62rem cap) while still scaling up on wide screens. */
+  font-size: clamp(0.5rem, calc(0.45rem + 0.15vw), 0.62rem);
   line-height: 1.15;
 }
 
@@ -191,14 +199,16 @@
   align-items: center;
   gap: var(--space-5);
   width: 100%;
-  margin-top: auto;
-  padding-top: var(--space-6);
+  margin-top: var(--space-7);
+  padding-top: 0;
 }
 
 .hero-terminal__aside {
   max-width: 34ch;
   color: var(--color-muted);
-  font-size: 0.875rem;
+  /* Slightly larger than the default small text, fluid so the two intro
+     paragraphs stay proportional to the growing terminal window. */
+  font-size: clamp(0.9375rem, calc(0.9rem + 0.2vw), 1.0625rem);
   line-height: 1.625;
   text-align: center;
 }
@@ -243,6 +253,12 @@
   color: var(--color-clay-dark);
 }
 
+/* The hero scroll button targets the INTRODUCTION section. Keep the sticky
+   header height as scroll margin so the section lands flush below it. */
+#introduction {
+  scroll-margin-top: 3.5rem;
+}
+
 @include reduce-motion {
   .hero-anim {
     animation: none;
@@ -259,10 +275,6 @@
 }
 
 @media (min-width: 40rem) {
-  .hero-terminal__screen {
-    font-size: 0.8rem;
-  }
-
   .hero-terminal__tagline {
     font-size: 1.1rem;
   }
@@ -272,12 +284,6 @@
     align-items: flex-start;
     justify-content: center;
     gap: var(--space-6);
-  }
-}
-
-@media (min-width: 48rem) {
-  .hero-terminal__asides {
-    padding-top: var(--space-5);
   }
 }
 
