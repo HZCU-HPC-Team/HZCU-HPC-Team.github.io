@@ -47,6 +47,9 @@ social:
   - icon: envelope
     icon_pack: fas
     link: 'mailto:1795527942@qq.com'
+  - icon: github
+    icon_pack: fab
+    link: 'https://github.com/XunuoXie'
 
 
 # Link to a PDF of your resume/CV from the About widget.
