@@ -470,23 +470,24 @@ homepage_preview: "  "
             r"@media\(max-width:47\.99rem\)\{[^@]*?\.hero-terminal__ascii--mobile\{[^}]*display:block",
         )
 
-    def test_terminal_hero_light_contract(self):
-        # Warm editorial terminal: cream section, raised-paper card, ink text,
-        # centered intro pair and CTA row (spec: 暖米白背景 + 炭黑文字).
+    def test_terminal_hero_black_contract(self):
+        # Real-terminal hero: cream paper section behind a dark terminal
+        # window (GitHub Dark palette: #0d1117 screen, #c9d1d9 text, soft
+        # green/blue prompt), centered intro pair and CTA row.
         css = "".join(self.compiled_css().split())
         self.assertRegex(css, r"\.hero-terminal\{[^}]*background:var\(--color-paper\)")
         self.assertNotRegex(css, r"\.hero-terminal\{[^}]*var\(--color-inverse\)")
-        self.assertRegex(css, r"\.hero-terminal__window\{[^}]*background:var\(--color-paper-raised\)")
+        self.assertRegex(css, r"\.hero-terminal__window\{[^}]*background:#0d1117")
         self.assertRegex(css, r"\.hero-terminal__window\{[^}]*border-radius:0?\.375rem")
-        self.assertRegex(css, r"\.hero-terminal__prompt-user\{[^}]*color:var\(--color-sage-dark\)")
-        self.assertRegex(css, r"\.hero-terminal__prompt-host\{[^}]*color:var\(--color-clay-dark\)")
-        self.assertRegex(css, r"\.hero-terminal__screen\{[^}]*color:var\(--color-ink\)")
+        self.assertRegex(css, r"\.hero-terminal__prompt-user\{[^}]*color:#7ee787")
+        self.assertRegex(css, r"\.hero-terminal__prompt-host\{[^}]*color:#7ee787")
+        self.assertRegex(css, r"\.hero-terminal__prompt-path\{[^}]*color:#79c0ff")
+        self.assertRegex(css, r"\.hero-terminal__screen\{[^}]*color:#c9d1d9")
+        self.assertRegex(css, r"\.hero-terminal__ascii\{[^}]*color:inherit")
         self.assertRegex(css, r"\.hero-terminal__asides\{[^}]*align-items:center")
         self.assertRegex(css, r"\.hero-terminal__ascii\{[^}]*overflow-x:auto")
         self.assertRegex(css, r"@media\(min-width:40rem\)\{[^@]*?\.hero-terminal__asides\{[^}]*flex-direction:row[^}]*justify-content:center")
         self.assertRegex(css, r"\.hero-terminal__cta-row\{[^}]*justify-content:center")
-        self.assertIn("--color-paper-raised:#fbf8f0", css)
-        self.assertIn("--color-sage-dark:#55634f", css)
 
     def test_svg_and_animated_gif_hero_assets_build_with_original_paths(self):
         for extension, fixture_data in (("svg", SVG_HERO), ("gif", ANIMATED_GIF_HERO)):

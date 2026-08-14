@@ -1,9 +1,10 @@
-/* Full-screen warm editorial hero: a light terminal window on the paper
-   background. A typing animation (assets/js/terminal.js) "runs" a few
-   HPC-flavoured commands whose final output reveals the team masthead. Lines
-   stay visible without JS; the typing effect only activates after JS adds
-   `.is-animated`, and hidden lines keep their layout space (visibility, not
-   display) so the window never jumps. */
+/* Full-screen warm editorial hero: a dark terminal window (GitHub Dark
+   palette: #0d1117 screen, #c9d1d9 text, soft green/blue prompt) floating on
+   the paper background. A typing animation (assets/js/terminal.js) "runs" a
+   few HPC-flavoured commands whose final output reveals the team masthead.
+   Lines stay visible without JS; the typing effect only activates after JS
+   adds `.is-animated`, and hidden lines keep their layout space (visibility,
+   not display) so the window never jumps. */
 
 .home-section.wg-hero-terminal {
   padding-block: 0;
@@ -37,10 +38,10 @@
      every browser size instead of freezing at one fixed width. */
   max-width: clamp(46rem, calc(42rem + 6vw), 54rem);
   overflow: hidden;
-  background: var(--color-paper-raised);
-  border: 1px solid var(--color-line);
+  background: #0d1117;
+  border: 1px solid #30363d;
   border-radius: 0.375rem;
-  box-shadow: 0 1rem 2.5rem rgba(31, 30, 26, 0.08);
+  box-shadow: 0 1rem 2.5rem rgba(31, 30, 26, 0.28);
 }
 
 .hero-terminal__chrome {
@@ -48,8 +49,8 @@
   align-items: center;
   gap: 0.5rem;
   padding: 0.7rem 1rem;
-  background: var(--color-paper-deep);
-  border-bottom: 1px solid var(--color-line);
+  background: #161b22;
+  border-bottom: 1px solid #30363d;
 }
 
 .hero-terminal__dot {
@@ -58,13 +59,14 @@
   border-radius: 50%;
 }
 
-.hero-terminal__dot--clay { background: var(--color-clay-light); }
-.hero-terminal__dot--sage { background: var(--color-sage); }
-.hero-terminal__dot--mute { background: var(--color-line-strong); }
+/* macOS-style traffic lights, as on a real terminal window. */
+.hero-terminal__dot--red { background: #ff5f57; }
+.hero-terminal__dot--yellow { background: #febc2e; }
+.hero-terminal__dot--green { background: #28c840; }
 
 .hero-terminal__chrome-title {
   flex: 1;
-  color: var(--color-muted);
+  color: #8b949e;
   font-family: var(--font-mono);
   font-size: var(--text-xs);
   text-align: center;
@@ -72,7 +74,7 @@
 
 .hero-terminal__screen {
   padding: 1.25rem 1.5rem;
-  color: var(--color-ink);
+  color: #c9d1d9;
   font-family: var(--font-mono);
   /* Fluid screen text: scales smoothly with the viewport (0.75rem on small
      windows up to 0.9rem on large ones), matching the window's fluid cap. */
@@ -92,42 +94,43 @@
   margin-top: 0.45em;
 }
 
-/* bash-style segmented prompt: user=sage, host=clay, separators=muted. */
+/* bash-style segmented prompt, GitHub Dark palette: soft green prompt, blue
+   path, gray separators on a near-black #0d1117 screen. */
 .hero-terminal__prompt {
   font-weight: 400;
 }
 
 .hero-terminal__prompt-user {
-  color: var(--color-sage-dark);
+  color: #7ee787;
 }
 
 .hero-terminal__prompt-sep {
-  color: var(--color-muted);
+  color: #8b949e;
 }
 
 .hero-terminal__prompt-host {
-  color: var(--color-clay-dark);
+  color: #7ee787;
 }
 
 .hero-terminal__prompt-path {
-  color: var(--color-muted);
+  color: #79c0ff;
 }
 
 .hero-terminal__prompt-sym {
-  color: var(--color-ink);
+  color: #c9d1d9;
   font-weight: 700;
 }
 
 .hero-terminal__cmd {
-  color: var(--color-sage-dark);
+  color: #c9d1d9;
 }
 
 .hero-terminal__line--out {
-  color: var(--color-muted);
+  color: #8b949e;
 }
 
 .hero-terminal__line--ok {
-  color: var(--color-sage-dark);
+  color: #7ee787;
 }
 
 /* Typing state (only after JS opts in): lines wait their turn but keep space. */
@@ -146,7 +149,7 @@
   width: 0.58em;
   height: 1.05em;
   vertical-align: text-bottom;
-  background: var(--color-ink);
+  background: #c9d1d9;
   animation: terminalBlink 1.06s step-end infinite;
 }
 
@@ -162,7 +165,7 @@
 
 .hero-terminal__headline {
   margin: 0 0 0.6em;
-  color: var(--color-clay-dark);
+  color: #7ee787;
   font-size: 0.85em;
   letter-spacing: 0.28em;
   text-transform: uppercase;
@@ -175,6 +178,9 @@
 .hero-terminal__ascii {
   margin: 0;
   overflow-x: auto;
+  /* Bootstrap's reboot styles `pre` with dark text (#212529); inherit the
+     screen's light color so the art stays visible on the black terminal. */
+  color: inherit;
   /* Fluid art size keeps the 125-column masthead in step with the window:
      it never outgrows the 46rem minimum window (125ch × 0.55em ≈ 43rem at
      the 0.62rem cap) while still scaling up on wide screens. */
@@ -188,7 +194,7 @@
 
 .hero-terminal__tagline {
   margin: 0.6em 0 0;
-  color: var(--color-muted);
+  color: #8b949e;
   font-family: var(--font-body);
   font-size: 1rem;
 }
