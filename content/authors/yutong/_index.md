@@ -26,19 +26,36 @@ organizations:
 bio: 
 
 interests:
-
+  - 我的世界 | Minecraft
+  - AOSC 社区开发者 | AOSC Developer
+  - Embedded Systems | 嵌入式
 
 education:
   courses:
-    - course: 
+    - course: Undergraduate software engineering
       institution: Hangzhou City University
-      year: 
+      year: 2025
 
 # Social/Academic Networking
 # For available icons, see: https://docs.hugoblox.com/getting-started/page-builder/#icons
 #   For an email link, use "fas" icon pack, "envelope" icon, and a link in the
 #   form "mailto:your-email@example.com" or "#contact" for contact widget.
-
+social:
+  - icon: envelope
+    icon_pack: fas
+    link: 'mailto:cookie3319@icloud.com'
+  - icon: github
+    icon_pack: fab
+    link: 'https://github.com/COOKIE3319'
+  - icon: telegram
+    icon_pack: fab
+    link: 'https://t.me/COOKIE3319'
+  - icon: qq
+    icon_pack: fab
+    link: 'https://qm.qq.com/q/ajaHWoNTOg'
+  - icon: twitter
+    icon_pack: fab
+    link: 'https://x.com/ce3319749964'
 
 # Link to a PDF of your resume/CV from the About widget.
 # To enable, copy your resume/CV to `static/files/cv.pdf` and uncomment the lines below.
@@ -47,7 +64,7 @@ education:
 #   link: files/cv.pdf
 
 # Enter email to display Gravatar (if Gravatar enabled in Config)
-email: ''
+email: 'cookie3319@icloud.com'
 
 # Organizational groups that you belong to (for People widget)
 #   Set this to `[]` or comment out if you are not using People widget.
@@ -55,3 +72,8 @@ user_groups:
   - Team members
 ---
 
+### 欢迎联系
+
+- Email:[cookie3319@icloud.com](mailto:cookie3319@icloud.com)
+- Telegram:[COOKIE3319](https://t.me/COOKIE3319)
+- QQ:[3319749964](https://qm.qq.com/q/ajaHWoNTOg)
