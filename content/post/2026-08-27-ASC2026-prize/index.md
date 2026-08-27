@@ -3,9 +3,9 @@ title: 喜报 | 我校超算团队双雄齐摘ASC世界大学生超算竞赛国�
 date: 2026-08-27
 
 image:
-  caption: '成员合影'
+  caption: ''
   focal_point: 'smart'
-  path: 'featured.jpg'
+  path: 'featured.png'
 
 tags:
   - ASC
@@ -37,7 +37,7 @@ ASC世界大学生超级计算机竞赛（ASC Student Supercomputer Challenge）
 
 ### 二队
 
-成员：乔思喆，吕俊辰，张国宾，陈宇翔，郭雨翰
+成员：乔思喆，吕俊辰，张国宾，陈宇翔，郭雨翰（从左至右）
 
 ![二队照片1](2.1.jpg)
 
