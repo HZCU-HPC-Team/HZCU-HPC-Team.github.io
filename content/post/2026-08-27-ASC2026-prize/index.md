@@ -2,6 +2,9 @@
 title: 喜报 | 我校超算团队双雄齐摘ASC世界大学生超算竞赛国际二等奖
 date: 2026-08-27
 
+authors:
+  - Yuxiang
+
 image:
   caption: ''
   focal_point: 'smart'
